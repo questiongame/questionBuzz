@@ -1,2 +1,2 @@
 # questionBuzz
-A development to interect with https://www.quizgamebuzzers.com/
+A development to interact with https://www.quizgamebuzzers.com/
