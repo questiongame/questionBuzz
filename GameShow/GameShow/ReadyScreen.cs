@@ -16,5 +16,16 @@ namespace GameShow
         {
             InitializeComponent();
         }
+
+        private void ReadyScreen_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            String keyPressed = e.KeyChar.ToString();
+            if (keyPressed.ToLower().Equals("w"))
+            {
+                return;
+            }
+            MessageBox.Show(keyPressed);
+            return;
+        }
     }
 }
