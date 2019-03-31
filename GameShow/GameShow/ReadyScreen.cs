@@ -22,10 +22,27 @@ namespace GameShow
             String keyPressed = e.KeyChar.ToString();
             if (keyPressed.ToLower().Equals("w"))
             {
-                return;
+                lblRight.Hide();
+                lblWrong.Show();
             }
-            MessageBox.Show(keyPressed);
+            else if (keyPressed.ToLower().Equals("r"))
+            {
+                lblRight.Show();
+                lblWrong.Hide();
+            }
+            else
+            {
+                lblRight.Hide();
+                lblWrong.Hide();
+            }
+            //MessageBox.Show(keyPressed);
             return;
+        }
+
+        private void ReadyScreen_Load(object sender, EventArgs e)
+        {
+            lblRight.Hide();
+            lblWrong.Hide();
         }
     }
 }
