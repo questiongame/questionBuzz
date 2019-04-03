@@ -37,7 +37,7 @@
             // 
             // btnTeams
             // 
-            this.btnTeams.BackColor = System.Drawing.Color.Transparent;
+            this.btnTeams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.btnTeams.FlatAppearance.BorderSize = 0;
             this.btnTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTeams.ForeColor = System.Drawing.Color.White;
@@ -50,7 +50,7 @@
             // 
             // btnTest
             // 
-            this.btnTest.BackColor = System.Drawing.Color.Transparent;
+            this.btnTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.btnTest.FlatAppearance.BorderSize = 0;
             this.btnTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTest.ForeColor = System.Drawing.Color.White;
@@ -63,7 +63,7 @@
             // 
             // btnStartGame
             // 
-            this.btnStartGame.BackColor = System.Drawing.Color.Transparent;
+            this.btnStartGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.btnStartGame.FlatAppearance.BorderSize = 0;
             this.btnStartGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartGame.ForeColor = System.Drawing.Color.White;
@@ -95,8 +95,10 @@
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnTeams);
+            this.MaximizeBox = false;
             this.Name = "Menu";
             this.Text = "Menu";
+            this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

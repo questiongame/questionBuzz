@@ -28,21 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblWrong = new System.Windows.Forms.Label();
             this.lblRight = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::GameShow.Properties.Resources.OneNumberLogo1;
-            this.pictureBox1.InitialImage = global::GameShow.Properties.Resources.OneNumberLogo1;
-            this.pictureBox1.Location = new System.Drawing.Point(1, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(320, 92);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // lblWrong
             // 
@@ -66,6 +56,16 @@
             this.lblRight.TabIndex = 2;
             this.lblRight.Text = "✔";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::GameShow.Properties.Resources.OneNumberLogo1;
+            this.pictureBox1.InitialImage = global::GameShow.Properties.Resources.OneNumberLogo1;
+            this.pictureBox1.Location = new System.Drawing.Point(1, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(320, 92);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // ReadyScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -76,6 +76,7 @@
             this.Controls.Add(this.lblRight);
             this.Controls.Add(this.lblWrong);
             this.Name = "ReadyScreen";
+            this.ShowInTaskbar = false;
             this.Text = "Ready Screen";
             this.Load += new System.EventHandler(this.ReadyScreen_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ReadyScreen_KeyPress);
