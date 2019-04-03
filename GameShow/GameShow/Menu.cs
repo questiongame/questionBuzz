@@ -19,7 +19,7 @@ namespace GameShow
 
         private void btnStartGame_Click(object sender, EventArgs e)
         {
-            ReadyScreen rs = new ReadyScreen();
+            GameScreen rs = new GameScreen();
             rs.ShowDialog();
         }
     }
