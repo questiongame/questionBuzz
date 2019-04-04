@@ -22,5 +22,10 @@ namespace GameShow
             GameScreen rs = new GameScreen();
             rs.ShowDialog();
         }
+
+        private void Menu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

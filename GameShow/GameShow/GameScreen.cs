@@ -70,6 +70,8 @@ namespace GameShow
             lblWrong.Hide();
             lblRight.Parent = lblMainBoxLabel;
             lblWrong.Parent = lblMainBoxLabel;
+            lblRight.Top -= 100;
+            lblWrong.Top -= 100;
         }
     }
 }

@@ -35,7 +35,6 @@
             this.lblPointsLabel = new System.Windows.Forms.Label();
             this.lblSecondsLabel = new System.Windows.Forms.Label();
             this.lblSeconds = new System.Windows.Forms.Label();
-            
             this.lblRight = new System.Windows.Forms.Label();
             this.lblWrong = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
