@@ -73,11 +73,39 @@ namespace GameShow
             }
             else
             {
+                switch (keyPressed.ToLower())
+                {
+                    case "1": highlightTeam(0); break;
+                    case "2": highlightTeam(1); break;
+                    case "3": highlightTeam(2); break;
+                    case "4": highlightTeam(3); break;
+                    case "5": highlightTeam(4); break;
+                    case "6": highlightTeam(5); break;
+                    case "7": highlightTeam(6); break;
+                    case "8": highlightTeam(7); break;
+                    case "9": highlightTeam(8); break;
+                    case "0": highlightTeam(9); break;
+                }
                 lblRight.Hide();
                 lblWrong.Hide();
             }
             //MessageBox.Show(keyPressed);
             return;
+        }
+
+        private void highlightTeam(int team)
+        {
+            try
+            {
+                lblTeams[team].BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
+                lblTeams[team].ForeColor = System.Drawing.Color.White;
+                //lblTeams[team].BackColor = System.Drawing.Color.White;
+                //lblTeams[team].ForeColor = System.Drawing.Color.Black;
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void ReadyScreen_Load(object sender, EventArgs e)
