@@ -27,5 +27,11 @@ namespace GameShow
         {
 
         }
+
+        private void BtnTeams_Click(object sender, EventArgs e)
+        {
+            TeamsScreen ts = new TeamsScreen();
+            ts.ShowDialog();
+        }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblMainBoxLabel = new System.Windows.Forms.Label();
             this.lblPoints = new System.Windows.Forms.Label();
@@ -37,21 +36,14 @@
             this.lblSeconds = new System.Windows.Forms.Label();
             this.lblRight = new System.Windows.Forms.Label();
             this.lblWrong = new System.Windows.Forms.Label();
+            this.picLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
-            // picLogo
-            // 
-            this.picLogo.Image = global::GameShow.Properties.Resources.Logo1;
-            this.picLogo.InitialImage = global::GameShow.Properties.Resources.OneNumberLogo1;
-            this.picLogo.Location = new System.Drawing.Point(12, 12);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(85, 85);
-            this.picLogo.TabIndex = 0;
-            this.picLogo.TabStop = false;
-            // 
             // lblTitle
             // 
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.lblTitle.Location = new System.Drawing.Point(111, 12);
@@ -64,6 +56,9 @@
             // 
             // lblMainBoxLabel
             // 
+            this.lblMainBoxLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMainBoxLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMainBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMainBoxLabel.Location = new System.Drawing.Point(12, 116);
@@ -76,6 +71,7 @@
             // 
             // lblPoints
             // 
+            this.lblPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPoints.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPoints.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
@@ -89,6 +85,7 @@
             // 
             // lblPointsLabel
             // 
+            this.lblPointsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPointsLabel.BackColor = System.Drawing.Color.White;
             this.lblPointsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPointsLabel.ForeColor = System.Drawing.Color.Black;
@@ -103,6 +100,7 @@
             // 
             // lblSecondsLabel
             // 
+            this.lblSecondsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSecondsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSecondsLabel.ForeColor = System.Drawing.Color.Black;
             this.lblSecondsLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -116,6 +114,7 @@
             // 
             // lblSeconds
             // 
+            this.lblSeconds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSeconds.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeconds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
@@ -129,27 +128,44 @@
             // 
             // lblRight
             // 
+            this.lblRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRight.BackColor = System.Drawing.Color.Transparent;
-            this.lblRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRight.Font = new System.Drawing.Font("Comic Sans MS", 200.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.lblRight.Location = new System.Drawing.Point(121, 158);
             this.lblRight.Name = "lblRight";
             this.lblRight.Size = new System.Drawing.Size(334, 330);
             this.lblRight.TabIndex = 16;
             this.lblRight.Text = "✔";
-            this.lblRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblRight.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblWrong
             // 
+            this.lblWrong.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblWrong.BackColor = System.Drawing.Color.Transparent;
-            this.lblWrong.Font = new System.Drawing.Font("Microsoft Sans Serif", 200F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWrong.Font = new System.Drawing.Font("Comic Sans MS", 200.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWrong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblWrong.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblWrong.Location = new System.Drawing.Point(121, 149);
             this.lblWrong.Name = "lblWrong";
             this.lblWrong.Size = new System.Drawing.Size(334, 330);
             this.lblWrong.TabIndex = 17;
             this.lblWrong.Text = "X";
             this.lblWrong.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // picLogo
+            // 
+            this.picLogo.Image = global::GameShow.Properties.Resources.Logo1;
+            this.picLogo.InitialImage = global::GameShow.Properties.Resources.OneNumberLogo1;
+            this.picLogo.Location = new System.Drawing.Point(12, 12);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(85, 85);
+            this.picLogo.TabIndex = 0;
+            this.picLogo.TabStop = false;
             // 
             // GameScreen
             // 
@@ -171,6 +187,7 @@
             this.ShowInTaskbar = false;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Load += new System.EventHandler(this.ReadyScreen_Load);
+            this.SizeChanged += new System.EventHandler(this.GameScreen_SizeChanged);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ReadyScreen_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);

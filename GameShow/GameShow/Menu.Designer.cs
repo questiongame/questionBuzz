@@ -47,6 +47,7 @@
             this.btnTeams.TabIndex = 0;
             this.btnTeams.Text = "Enter Team Names";
             this.btnTeams.UseVisualStyleBackColor = false;
+            this.btnTeams.Click += new System.EventHandler(this.BtnTeams_Click);
             // 
             // btnTest
             // 
