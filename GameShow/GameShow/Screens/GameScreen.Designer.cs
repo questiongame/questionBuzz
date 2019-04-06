@@ -46,10 +46,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
-            this.lblTitle.Location = new System.Drawing.Point(111, 12);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblTitle.Location = new System.Drawing.Point(101, 12);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(270, 88);
+            this.lblTitle.Size = new System.Drawing.Size(291, 88);
             this.lblTitle.TabIndex = 5;
             this.lblTitle.Text = "Question 99";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -61,7 +61,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMainBoxLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMainBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMainBoxLabel.Location = new System.Drawing.Point(12, 116);
+            this.lblMainBoxLabel.Location = new System.Drawing.Point(12, 119);
             this.lblMainBoxLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this.lblMainBoxLabel.Name = "lblMainBoxLabel";
             this.lblMainBoxLabel.Size = new System.Drawing.Size(568, 433);
@@ -73,14 +73,14 @@
             // 
             this.lblPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPoints.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPoints.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
-            this.lblPoints.Location = new System.Drawing.Point(387, 12);
-            this.lblPoints.Margin = new System.Windows.Forms.Padding(1);
+            this.lblPoints.Location = new System.Drawing.Point(394, 12);
+            this.lblPoints.Margin = new System.Windows.Forms.Padding(0);
             this.lblPoints.Name = "lblPoints";
             this.lblPoints.Size = new System.Drawing.Size(92, 88);
             this.lblPoints.TabIndex = 11;
-            this.lblPoints.Text = "99";
+            this.lblPoints.Text = "999";
             this.lblPoints.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblPointsLabel
@@ -90,10 +90,10 @@
             this.lblPointsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPointsLabel.ForeColor = System.Drawing.Color.Black;
             this.lblPointsLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblPointsLabel.Location = new System.Drawing.Point(396, 68);
-            this.lblPointsLabel.Margin = new System.Windows.Forms.Padding(1);
+            this.lblPointsLabel.Location = new System.Drawing.Point(396, 79);
+            this.lblPointsLabel.Margin = new System.Windows.Forms.Padding(0);
             this.lblPointsLabel.Name = "lblPointsLabel";
-            this.lblPointsLabel.Size = new System.Drawing.Size(74, 29);
+            this.lblPointsLabel.Size = new System.Drawing.Size(74, 18);
             this.lblPointsLabel.TabIndex = 12;
             this.lblPointsLabel.Text = "Points";
             this.lblPointsLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -104,10 +104,10 @@
             this.lblSecondsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSecondsLabel.ForeColor = System.Drawing.Color.Black;
             this.lblSecondsLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblSecondsLabel.Location = new System.Drawing.Point(497, 68);
-            this.lblSecondsLabel.Margin = new System.Windows.Forms.Padding(1);
+            this.lblSecondsLabel.Location = new System.Drawing.Point(497, 79);
+            this.lblSecondsLabel.Margin = new System.Windows.Forms.Padding(0);
             this.lblSecondsLabel.Name = "lblSecondsLabel";
-            this.lblSecondsLabel.Size = new System.Drawing.Size(74, 29);
+            this.lblSecondsLabel.Size = new System.Drawing.Size(74, 18);
             this.lblSecondsLabel.TabIndex = 14;
             this.lblSecondsLabel.Text = "Seconds";
             this.lblSecondsLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -116,10 +116,10 @@
             // 
             this.lblSeconds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSeconds.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeconds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.lblSeconds.Location = new System.Drawing.Point(488, 12);
-            this.lblSeconds.Margin = new System.Windows.Forms.Padding(1);
+            this.lblSeconds.Margin = new System.Windows.Forms.Padding(0);
             this.lblSeconds.Name = "lblSeconds";
             this.lblSeconds.Size = new System.Drawing.Size(92, 88);
             this.lblSeconds.TabIndex = 13;
@@ -134,7 +134,7 @@
             this.lblRight.BackColor = System.Drawing.Color.Transparent;
             this.lblRight.Font = new System.Drawing.Font("Comic Sans MS", 200.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
-            this.lblRight.Location = new System.Drawing.Point(12, 116);
+            this.lblRight.Location = new System.Drawing.Point(12, 119);
             this.lblRight.Name = "lblRight";
             this.lblRight.Size = new System.Drawing.Size(568, 433);
             this.lblRight.TabIndex = 16;
@@ -150,7 +150,7 @@
             this.lblWrong.Font = new System.Drawing.Font("Comic Sans MS", 200.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWrong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblWrong.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblWrong.Location = new System.Drawing.Point(12, 116);
+            this.lblWrong.Location = new System.Drawing.Point(12, 119);
             this.lblWrong.Name = "lblWrong";
             this.lblWrong.Size = new System.Drawing.Size(568, 433);
             this.lblWrong.TabIndex = 17;
@@ -185,6 +185,7 @@
             this.Name = "GameScreen";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Load += new System.EventHandler(this.ReadyScreen_Load);
             this.SizeChanged += new System.EventHandler(this.GameScreen_SizeChanged);
