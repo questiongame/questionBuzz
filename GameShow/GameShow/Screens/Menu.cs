@@ -7,31 +7,56 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace GameShow
 {
     public partial class Menu : Form
     {
+        private bool musicPlaying = false;
+        private SoundPlayer simpleSound = null;
         public Menu()
         {
+            playSound("HarderBetterFasterStronger");
             InitializeComponent();
         }
-
-        private void btnStartGame_Click(object sender, EventArgs e)
+        [STAThread]
+        private void playSound(String sound)
         {
-            GameScreen rs = new GameScreen();
-            rs.ShowDialog();
+            try
+            {
+                if (simpleSound == null)
+                    simpleSound = new SoundPlayer("Resources\\" + sound + ".wav");
+                simpleSound.Play();
+                musicPlaying = true;
+            }
+            catch (Exception)
+            {
+            };
         }
-
-        private void Menu_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnTeams_Click(object sender, EventArgs e)
         {
             TeamsScreen ts = new TeamsScreen();
             ts.ShowDialog();
+        }
+        private void BtnTest_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btnStartGame_Click(object sender, EventArgs e)
+        {
+            musicPlaying = false;
+            GameScreen rs = new GameScreen();
+            rs.ShowDialog();
+        }
+        private void Menu_Activated(object sender, EventArgs e)
+        {
+            if (!musicPlaying)
+                playSound("HarderBetterFasterStronger");
+        }
+        private void Menu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

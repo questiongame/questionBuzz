@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameScreen));
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblMainBoxLabel = new System.Windows.Forms.Label();
             this.lblPoints = new System.Windows.Forms.Label();
@@ -44,7 +45,7 @@
             // 
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.lblTitle.Location = new System.Drawing.Point(101, 12);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -60,7 +61,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMainBoxLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblMainBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMainBoxLabel.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMainBoxLabel.Location = new System.Drawing.Point(12, 119);
             this.lblMainBoxLabel.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this.lblMainBoxLabel.Name = "lblMainBoxLabel";
@@ -73,7 +74,7 @@
             // 
             this.lblPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPoints.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPoints.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPoints.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.lblPoints.Location = new System.Drawing.Point(394, 12);
             this.lblPoints.Margin = new System.Windows.Forms.Padding(0);
@@ -87,7 +88,7 @@
             // 
             this.lblPointsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPointsLabel.BackColor = System.Drawing.Color.White;
-            this.lblPointsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPointsLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPointsLabel.ForeColor = System.Drawing.Color.Black;
             this.lblPointsLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.lblPointsLabel.Location = new System.Drawing.Point(403, 79);
@@ -101,7 +102,7 @@
             // lblSecondsLabel
             // 
             this.lblSecondsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSecondsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecondsLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSecondsLabel.ForeColor = System.Drawing.Color.Black;
             this.lblSecondsLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.lblSecondsLabel.Location = new System.Drawing.Point(497, 79);
@@ -116,7 +117,7 @@
             // 
             this.lblSeconds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSeconds.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSeconds.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeconds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.lblSeconds.Location = new System.Drawing.Point(488, 12);
             this.lblSeconds.Margin = new System.Windows.Forms.Padding(0);
@@ -132,7 +133,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRight.BackColor = System.Drawing.Color.Transparent;
-            this.lblRight.Font = new System.Drawing.Font("Comic Sans MS", 200.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRight.Font = new System.Drawing.Font("Arial", 200.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.lblRight.Location = new System.Drawing.Point(12, 119);
             this.lblRight.Name = "lblRight";
@@ -147,7 +148,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblWrong.BackColor = System.Drawing.Color.Transparent;
-            this.lblWrong.Font = new System.Drawing.Font("Comic Sans MS", 200.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWrong.Font = new System.Drawing.Font("Arial", 200.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWrong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblWrong.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblWrong.Location = new System.Drawing.Point(12, 119);
@@ -159,12 +160,11 @@
             // 
             // picLogo
             // 
-            this.picLogo.Image = global::GameShow.Properties.Resources.Logo1;
-            this.picLogo.InitialImage = global::GameShow.Properties.Resources.OneNumberLogo1;
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
             this.picLogo.Location = new System.Drawing.Point(12, 12);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(85, 85);
-            this.picLogo.TabIndex = 0;
+            this.picLogo.TabIndex = 18;
             this.picLogo.TabStop = false;
             // 
             // GameScreen
@@ -197,8 +197,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblMainBoxLabel;
         private System.Windows.Forms.Label lblPoints;
@@ -207,6 +205,7 @@
         private System.Windows.Forms.Label lblSeconds;
         private System.Windows.Forms.Label lblRight;
         private System.Windows.Forms.Label lblWrong;
+        private System.Windows.Forms.PictureBox picLogo;
     }
 }
 

@@ -112,7 +112,6 @@
     <EmbeddedResource Include="Screens\GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Resources\GameShow_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,12 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\OneNumberLogo1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Logo1.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

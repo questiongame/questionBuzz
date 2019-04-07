@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.btnTeams = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
             this.btnStartGame = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.picLogo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // btnTeams
             // 
             this.btnTeams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.btnTeams.FlatAppearance.BorderSize = 0;
-            this.btnTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeams.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTeams.ForeColor = System.Drawing.Color.White;
             this.btnTeams.Location = new System.Drawing.Point(223, 194);
             this.btnTeams.Name = "btnTeams";
@@ -53,7 +54,7 @@
             // 
             this.btnTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.btnTest.FlatAppearance.BorderSize = 0;
-            this.btnTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTest.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTest.ForeColor = System.Drawing.Color.White;
             this.btnTest.Location = new System.Drawing.Point(223, 304);
             this.btnTest.Name = "btnTest";
@@ -61,12 +62,13 @@
             this.btnTest.TabIndex = 1;
             this.btnTest.Text = "Test Buzzers";
             this.btnTest.UseVisualStyleBackColor = false;
+            this.btnTest.Click += new System.EventHandler(this.BtnTest_Click);
             // 
             // btnStartGame
             // 
             this.btnStartGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.btnStartGame.FlatAppearance.BorderSize = 0;
-            this.btnStartGame.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartGame.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartGame.ForeColor = System.Drawing.Color.White;
             this.btnStartGame.Location = new System.Drawing.Point(223, 415);
             this.btnStartGame.Name = "btnStartGame";
@@ -76,15 +78,14 @@
             this.btnStartGame.UseVisualStyleBackColor = false;
             this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
-            // pictureBox1
+            // picLogo
             // 
-            this.pictureBox1.Image = global::GameShow.Properties.Resources.OneNumberLogo1;
-            this.pictureBox1.InitialImage = global::GameShow.Properties.Resources.OneNumberLogo1;
-            this.pictureBox1.Location = new System.Drawing.Point(223, 65);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(320, 92);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
+            this.picLogo.Location = new System.Drawing.Point(223, 59);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Size = new System.Drawing.Size(320, 92);
+            this.picLogo.TabIndex = 4;
+            this.picLogo.TabStop = false;
             // 
             // Menu
             // 
@@ -92,7 +93,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picLogo);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnTeams);
@@ -102,8 +103,9 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Activated += new System.EventHandler(this.Menu_Activated);
             this.Load += new System.EventHandler(this.Menu_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -113,6 +115,6 @@
         private System.Windows.Forms.Button btnTeams;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button btnStartGame;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picLogo;
     }
 }

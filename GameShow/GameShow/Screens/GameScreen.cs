@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Media;
 
 namespace GameShow
 {
@@ -31,7 +32,8 @@ namespace GameShow
                 questions = new Question[questionLines.Length];
                 for (int i = 0; i < questionLines.Length; i++)
                 {
-                    questionLines[i] = questionLines[i].Replace("\r", "");
+                    if (questionLines[i].Contains("\r"))
+                        questionLines[i] = questionLines[i].Replace("\r", "");
                     String[] qlColumns = questionLines[i].Split('|');
                     questions[i] = new Question(
                         Convert.ToInt32(qlColumns[0]), 
@@ -50,8 +52,9 @@ namespace GameShow
         }
         private void drawReadyScreen()
         {
-            lblTitle.Text = "Question " + (questionIndex + 1).ToString();
-            lblMainBoxLabel.Text = "Let's get ready to RUMBLEEEE!!";
+            playSound("ready");
+            lblTitle.Text = "Question " + questions[questionIndex].questionNumber.ToString();
+            lblMainBoxLabel.Text = "Buuuzzers Readyyy!!!";
             lblPoints.Text = questions[questionIndex].points.ToString();
             lblSeconds.Text = questions[questionIndex].time.ToString();
             hideMarks();
@@ -61,20 +64,20 @@ namespace GameShow
         }
         private void drawQuestionScreen()
         {
-            lblTitle.Text = "Question " + (questionIndex + 1).ToString();
+            lblTitle.Text = "Question " + questions[questionIndex].questionNumber.ToString();
             lblMainBoxLabel.Text = questions[questionIndex].strQuestion;
             hideMarks();
-            unlockKeyboard();
             foreach (Label team in lblTeams) highlightTeam(team, false);
             screenShowing = screen.question;
+            unlockKeyboard();
         }
         private void drawAnswerScreen()
         {
-            lblTitle.Text = "Answer " + (questionIndex + 1).ToString();
+            lblTitle.Text = "Answer " + questions[questionIndex].questionNumber.ToString();
             lblMainBoxLabel.Text = questions[questionIndex].strAnswer;
             hideMarks();
-            lockKeyboard();
             screenShowing = screen.answer;
+            lockKeyboard();
         }
         private void drawErrorScreen()
         {
@@ -82,8 +85,8 @@ namespace GameShow
             lblMainBoxLabel.Text = "Error Reading Questions File";
             lblPoints.Text = "000";
             lblSeconds.Text = "00";
-            lockKeyboard();
             screenShowing = screen.error;
+            lockKeyboard();
         }
         private void drawEndScreen()
         {
@@ -92,9 +95,9 @@ namespace GameShow
             lblPoints.Text = "100";
             lblSeconds.Text = "00";
             hideMarks();
-            lockKeyboard();
             foreach (Label team in lblTeams) highlightTeam(team, false);
             screenShowing = screen.scores;
+            lockKeyboard();
         }
         private void loadTeams()
         {
@@ -117,11 +120,12 @@ namespace GameShow
             this.lblTeams = new System.Windows.Forms.Label[teams.Length];
             for (int i = 0; i < teams.Length; i++)
             {
-                teams[i] = teams[i].Replace("\r", ""); //Need to remove new line char at end of line. Optionally use System.Environment.NewLine
+                if (teams[i].Contains("\r"))
+                    teams[i] = teams[i].Replace("\r", ""); //Need to remove new line char at end of line. Optionally use System.Environment.NewLine
                 this.lblTeams[i] = new System.Windows.Forms.Label();
                 this.lblTeams[i].Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                 this.lblTeams[i].BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                this.lblTeams[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                this.lblTeams[i].Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.lblTeams[i].ForeColor = System.Drawing.Color.Black;
                 this.lblTeams[i].ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
                 this.lblTeams[i].Location = new System.Drawing.Point(586, 12 + (i * 55));
@@ -214,9 +218,17 @@ namespace GameShow
                 }
             }
         }
-        private void nextScreen()
+        [STAThread]
+        private void playSound(String sound)
         {
-            
+            try
+            {
+                SoundPlayer simpleSound = new SoundPlayer("Resources\\" + sound + ".wav");
+                simpleSound.Play();
+            }
+            catch (Exception)
+            {
+            };
         }
         private void hideMarks()
         {
@@ -226,6 +238,7 @@ namespace GameShow
         }
         private void markRight()
         {
+            playSound("right");
             lblRight.Show();
             lblWrong.Hide();
             questionMarked = true;
@@ -233,6 +246,7 @@ namespace GameShow
         }
         private void markWrong()
         {
+            playSound("wrong");
             lblRight.Hide();
             lblWrong.Show();
             questionMarked = true;
@@ -252,6 +266,7 @@ namespace GameShow
             {
                 if (highlighted)
                 {
+                    playSound("team1");
                     team.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
                     team.ForeColor = System.Drawing.Color.White;
                 }
@@ -270,20 +285,19 @@ namespace GameShow
             hideMarks();
             lblRight.Parent = lblMainBoxLabel; //Need this to make the Right Label Background Transparent based on the object that is behind
             lblWrong.Parent = lblMainBoxLabel; //Need this to make the Wrong Label Background Transparent based on the object that is behind
-            lblRight.Top -= 125; //For some reason the ✔ mark drops to the bottom so this is to realign
-            lblWrong.Top -= 125; //For some reason the X mark drops to the bottom so this is to realign
+            lblRight.Top -= 100; //For some reason the ✔ mark drops to the bottom so this is to realign
+            lblWrong.Top -= 100; //For some reason the X mark drops to the bottom so this is to realign
         }
         private void GameScreen_SizeChanged(object sender, EventArgs e)
         {
             //Dinamically change the Font Size of the Texts when resizing the screen
-            lblMainBoxLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", (this.Size.Width * 48 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", (this.Size.Width * 28 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblRight.Font = new System.Drawing.Font("Comic Sans MS", (this.Size.Width * 200 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblWrong.Font = new System.Drawing.Font("Comic Sans MS", (this.Size.Width * 200 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //lblPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", (this.Size.Width * 27 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //lblSecondsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", (this.Size.Width * 27 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblMainBoxLabel.Font = new System.Drawing.Font("Arial", (this.Size.Width * 48 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblTitle.Font = new System.Drawing.Font("Arial", (this.Size.Width * 28 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblRight.Font = new System.Drawing.Font("Arial", (this.Size.Width * 200 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblWrong.Font = new System.Drawing.Font("Arial", (this.Size.Width * 200 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //lblPoints.Font = new System.Drawing.Font("Arial", (this.Size.Width * 27 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //lblSecondsLabel.Font = new System.Drawing.Font("Arial", (this.Size.Width * 27 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
-
         private void GameScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
             lblTeams = null;

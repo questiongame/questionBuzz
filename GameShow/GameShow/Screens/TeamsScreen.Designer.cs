@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamsScreen));
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
@@ -35,8 +36,7 @@
             // 
             // picLogo
             // 
-            this.picLogo.Image = global::GameShow.Properties.Resources.Logo1;
-            this.picLogo.InitialImage = global::GameShow.Properties.Resources.OneNumberLogo1;
+            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
             this.picLogo.Location = new System.Drawing.Point(12, 12);
             this.picLogo.Name = "picLogo";
             this.picLogo.Size = new System.Drawing.Size(85, 85);
