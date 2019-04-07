@@ -90,7 +90,7 @@
             this.lblPointsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPointsLabel.ForeColor = System.Drawing.Color.Black;
             this.lblPointsLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblPointsLabel.Location = new System.Drawing.Point(396, 79);
+            this.lblPointsLabel.Location = new System.Drawing.Point(403, 79);
             this.lblPointsLabel.Margin = new System.Windows.Forms.Padding(0);
             this.lblPointsLabel.Name = "lblPointsLabel";
             this.lblPointsLabel.Size = new System.Drawing.Size(74, 18);
@@ -173,12 +173,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.picLogo);
+            this.Controls.Add(this.lblPointsLabel);
             this.Controls.Add(this.lblSecondsLabel);
             this.Controls.Add(this.lblSeconds);
-            this.Controls.Add(this.lblPointsLabel);
             this.Controls.Add(this.lblPoints);
             this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.picLogo);
             this.Controls.Add(this.lblWrong);
             this.Controls.Add(this.lblRight);
             this.Controls.Add(this.lblMainBoxLabel);
@@ -187,6 +187,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameScreen_FormClosed);
             this.Load += new System.EventHandler(this.ReadyScreen_Load);
             this.SizeChanged += new System.EventHandler(this.GameScreen_SizeChanged);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ReadyScreen_KeyPress);
