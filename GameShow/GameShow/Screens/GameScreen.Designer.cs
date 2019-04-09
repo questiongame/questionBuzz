@@ -32,13 +32,19 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblMainBoxLabel = new System.Windows.Forms.Label();
             this.lblPoints = new System.Windows.Forms.Label();
-            this.lblPointsLabel = new System.Windows.Forms.Label();
-            this.lblSecondsLabel = new System.Windows.Forms.Label();
             this.lblSeconds = new System.Windows.Forms.Label();
             this.lblRight = new System.Windows.Forms.Label();
             this.lblWrong = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
+            this.lblSecondsLabel = new System.Windows.Forms.Label();
+            this.lblPointsLabel = new System.Windows.Forms.Label();
+            this.scoresPanel = new System.Windows.Forms.Panel();
+            this.picScoresLogo = new System.Windows.Forms.PictureBox();
+            this.lblScoresScreen = new System.Windows.Forms.Label();
+            this.lblScores = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            this.scoresPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picScoresLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -83,35 +89,6 @@
             this.lblPoints.TabIndex = 11;
             this.lblPoints.Text = "999";
             this.lblPoints.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblPointsLabel
-            // 
-            this.lblPointsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPointsLabel.BackColor = System.Drawing.Color.White;
-            this.lblPointsLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPointsLabel.ForeColor = System.Drawing.Color.Black;
-            this.lblPointsLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblPointsLabel.Location = new System.Drawing.Point(403, 79);
-            this.lblPointsLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.lblPointsLabel.Name = "lblPointsLabel";
-            this.lblPointsLabel.Size = new System.Drawing.Size(74, 18);
-            this.lblPointsLabel.TabIndex = 12;
-            this.lblPointsLabel.Text = "Points";
-            this.lblPointsLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // lblSecondsLabel
-            // 
-            this.lblSecondsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSecondsLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecondsLabel.ForeColor = System.Drawing.Color.Black;
-            this.lblSecondsLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblSecondsLabel.Location = new System.Drawing.Point(497, 79);
-            this.lblSecondsLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.lblSecondsLabel.Name = "lblSecondsLabel";
-            this.lblSecondsLabel.Size = new System.Drawing.Size(74, 18);
-            this.lblSecondsLabel.TabIndex = 14;
-            this.lblSecondsLabel.Text = "Seconds";
-            this.lblSecondsLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // lblSeconds
             // 
@@ -167,12 +144,95 @@
             this.picLogo.TabIndex = 18;
             this.picLogo.TabStop = false;
             // 
+            // lblSecondsLabel
+            // 
+            this.lblSecondsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSecondsLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecondsLabel.ForeColor = System.Drawing.Color.Black;
+            this.lblSecondsLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblSecondsLabel.Location = new System.Drawing.Point(497, 79);
+            this.lblSecondsLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSecondsLabel.Name = "lblSecondsLabel";
+            this.lblSecondsLabel.Size = new System.Drawing.Size(74, 18);
+            this.lblSecondsLabel.TabIndex = 14;
+            this.lblSecondsLabel.Text = "Seconds";
+            this.lblSecondsLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblPointsLabel
+            // 
+            this.lblPointsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPointsLabel.BackColor = System.Drawing.Color.White;
+            this.lblPointsLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPointsLabel.ForeColor = System.Drawing.Color.Black;
+            this.lblPointsLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblPointsLabel.Location = new System.Drawing.Point(403, 79);
+            this.lblPointsLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPointsLabel.Name = "lblPointsLabel";
+            this.lblPointsLabel.Size = new System.Drawing.Size(74, 18);
+            this.lblPointsLabel.TabIndex = 12;
+            this.lblPointsLabel.Text = "Points";
+            this.lblPointsLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // scoresPanel
+            // 
+            this.scoresPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.scoresPanel.Controls.Add(this.lblScores);
+            this.scoresPanel.Controls.Add(this.lblScoresScreen);
+            this.scoresPanel.Controls.Add(this.picScoresLogo);
+            this.scoresPanel.Location = new System.Drawing.Point(0, 1);
+            this.scoresPanel.Name = "scoresPanel";
+            this.scoresPanel.Size = new System.Drawing.Size(784, 559);
+            this.scoresPanel.TabIndex = 19;
+            // 
+            // picScoresLogo
+            // 
+            this.picScoresLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picScoresLogo.Image = ((System.Drawing.Image)(resources.GetObject("picScoresLogo.Image")));
+            this.picScoresLogo.Location = new System.Drawing.Point(440, 12);
+            this.picScoresLogo.Name = "picScoresLogo";
+            this.picScoresLogo.Size = new System.Drawing.Size(320, 92);
+            this.picScoresLogo.TabIndex = 20;
+            this.picScoresLogo.TabStop = false;
+            // 
+            // lblScoresScreen
+            // 
+            this.lblScoresScreen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblScoresScreen.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoresScreen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
+            this.lblScoresScreen.Location = new System.Drawing.Point(9, 12);
+            this.lblScoresScreen.Margin = new System.Windows.Forms.Padding(0);
+            this.lblScoresScreen.Name = "lblScoresScreen";
+            this.lblScoresScreen.Size = new System.Drawing.Size(291, 92);
+            this.lblScoresScreen.TabIndex = 21;
+            this.lblScoresScreen.Text = "Scoreboard";
+            this.lblScoresScreen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblScores
+            // 
+            this.lblScores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblScores.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScores.Location = new System.Drawing.Point(12, 118);
+            this.lblScores.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this.lblScores.Name = "lblScores";
+            this.lblScores.Size = new System.Drawing.Size(568, 430);
+            this.lblScores.TabIndex = 22;
+            this.lblScores.Text = "Team 1  999 points\r\nTeam 2  999 points\r\nTeam 3  999 points\r\nTeam 4  999 points\r\nT" +
+    "eam 5  999 points\r\nTeam 6  999 points\r\nTeam 7  999 points\r\nTeam 8  999 points\r\nT" +
+    "eam 9  999 points\r\nTeam 10 999 points";
+            this.lblScores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.scoresPanel);
             this.Controls.Add(this.picLogo);
             this.Controls.Add(this.lblPointsLabel);
             this.Controls.Add(this.lblSecondsLabel);
@@ -192,6 +252,8 @@
             this.SizeChanged += new System.EventHandler(this.GameScreen_SizeChanged);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ReadyScreen_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            this.scoresPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picScoresLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -200,12 +262,16 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblMainBoxLabel;
         private System.Windows.Forms.Label lblPoints;
-        private System.Windows.Forms.Label lblPointsLabel;
-        private System.Windows.Forms.Label lblSecondsLabel;
         private System.Windows.Forms.Label lblSeconds;
         private System.Windows.Forms.Label lblRight;
         private System.Windows.Forms.Label lblWrong;
         private System.Windows.Forms.PictureBox picLogo;
+        private System.Windows.Forms.Label lblSecondsLabel;
+        private System.Windows.Forms.Label lblPointsLabel;
+        private System.Windows.Forms.Panel scoresPanel;
+        private System.Windows.Forms.PictureBox picScoresLogo;
+        private System.Windows.Forms.Label lblScores;
+        private System.Windows.Forms.Label lblScoresScreen;
     }
 }
 

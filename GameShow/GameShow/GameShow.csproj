@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Question.cs" />
+    <Compile Include="Classes\Team.cs" />
     <Compile Include="Screens\TeamsScreen.cs">
       <SubType>Form</SubType>
     </Compile>
