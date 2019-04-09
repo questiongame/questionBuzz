@@ -17,7 +17,7 @@ namespace GameShow
         private SoundPlayer simpleSound = null;
         public Menu()
         {
-            playSound("HarderBetterFasterStronger");
+            playSound("menu");
             InitializeComponent();
         }
         [STAThread]
@@ -52,7 +52,7 @@ namespace GameShow
         private void Menu_Activated(object sender, EventArgs e)
         {
             if (!musicPlaying)
-                playSound("HarderBetterFasterStronger");
+                playSound("menu");
         }
         private void Menu_Load(object sender, EventArgs e)
         {

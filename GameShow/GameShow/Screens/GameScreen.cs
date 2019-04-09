@@ -53,66 +53,6 @@ namespace GameShow
                 drawErrorScreen();
             };
         }
-        private void drawReadyScreen()
-        {
-            scoresPanel.Hide();
-            playSound(readySound);
-            lblTitle.Text = "Question " + questions[questionIndex].questionNumber.ToString();
-            lblMainBoxLabel.Text = "Buuuzzers Readyyy!!!";
-            lblPoints.Text = questions[questionIndex].points.ToString();
-            lblSeconds.Text = questions[questionIndex].time.ToString();
-            hideMarks();
-            lockKeyboard();
-            foreach (Team team in this.teams) highlightTeam(team, false);
-            screenShowing = screen.ready;
-        }
-        private void drawQuestionScreen()
-        {
-            scoresPanel.Hide();
-            lblTitle.Text = "Question " + questions[questionIndex].questionNumber.ToString();
-            lblMainBoxLabel.Text = questions[questionIndex].strQuestion;
-            hideMarks();
-            foreach (Team team in this.teams) highlightTeam(team, false);
-            screenShowing = screen.question;
-            unlockKeyboard();
-        }
-        private void drawAnswerScreen()
-        {
-            scoresPanel.Hide();
-            lblTitle.Text = "Answer " + questions[questionIndex].questionNumber.ToString();
-            lblMainBoxLabel.Text = questions[questionIndex].strAnswer;
-            hideMarks();
-            screenShowing = screen.answer;
-            lockKeyboard();
-        }
-        private void drawScoresScreen()
-        {
-            scoresPanel.Show();
-            screenShowing = screen.scores;
-            lockKeyboard();
-        }
-        private void drawErrorScreen()
-        {
-            scoresPanel.Hide();
-            lblTitle.Text = "Error";
-            lblMainBoxLabel.Text = "Error Reading Questions File";
-            lblPoints.Text = "000";
-            lblSeconds.Text = "00";
-            screenShowing = screen.error;
-            lockKeyboard();
-        }
-        private void drawEndScreen()
-        {
-            scoresPanel.Hide();
-            lblTitle.Text = "The End";
-            lblMainBoxLabel.Text = "Congratulations!!";
-            lblPoints.Text = "100";
-            lblSeconds.Text = "00";
-            hideMarks();
-            foreach (Team team in this.teams) highlightTeam(team, false);
-            screenShowing = screen.scores;
-            lockKeyboard();
-        }
         private void loadTeams()
         {
             String[] teamLines = null;
@@ -152,6 +92,21 @@ namespace GameShow
                 this.Controls.Add(newLabel);
                 this.teams[i] = new Team(newLabel, i);
             }
+        }
+        private void loadSounds()
+        {
+            try
+            {
+                rightSound = new SoundPlayer("Resources\\right.wav");
+                wrongSound = new SoundPlayer("Resources\\wrong.wav");
+                readySound = new SoundPlayer("Resources\\ready.wav");
+                rightSound.Load();
+                wrongSound.Load();
+                readySound.Load();
+            }
+            catch (Exception)
+            {
+            };
         }
         public GameScreen()
         {
@@ -248,25 +203,76 @@ namespace GameShow
                     unlockKeyboard();
                 }
             }
+        }        
+        private void drawReadyScreen()
+        {
+            scoresPanel.Hide();
+            playSound(readySound);
+            lblTitle.Text = "Question " + questions[questionIndex].questionNumber.ToString();
+            lblMainBoxLabel.Text = "Buuuzzers Readyyy!!!";
+            lblPoints.Text = questions[questionIndex].points.ToString();
+            lblSeconds.Text = questions[questionIndex].time.ToString();
+            hideMarks();
+            lockKeyboard();
+            foreach (Team team in this.teams) highlightTeam(team, false);
+            screenShowing = screen.ready;
         }
-        private void loadSounds()
+        private void drawQuestionScreen()
+        {
+            scoresPanel.Hide();
+            lblTitle.Text = "Question " + questions[questionIndex].questionNumber.ToString();
+            lblMainBoxLabel.Text = questions[questionIndex].strQuestion;
+            hideMarks();
+            foreach (Team team in this.teams) highlightTeam(team, false);
+            screenShowing = screen.question;
+            unlockKeyboard();
+        }
+        private void drawAnswerScreen()
+        {
+            scoresPanel.Hide();
+            lblTitle.Text = "Answer " + questions[questionIndex].questionNumber.ToString();
+            lblMainBoxLabel.Text = questions[questionIndex].strAnswer;
+            hideMarks();
+            screenShowing = screen.answer;
+            lockKeyboard();
+        }
+        private void drawScoresScreen()
+        {
+            scoresPanel.Show();
+            screenShowing = screen.scores;
+            lockKeyboard();
+        }
+        private void drawErrorScreen()
+        {
+            scoresPanel.Hide();
+            lblTitle.Text = "Error";
+            lblMainBoxLabel.Text = "Error Reading Questions File";
+            lblPoints.Text = "000";
+            lblSeconds.Text = "00";
+            screenShowing = screen.error;
+            lockKeyboard();
+        }
+        private void drawEndScreen()
+        {
+            scoresPanel.Hide();
+            lblTitle.Text = "The End";
+            lblMainBoxLabel.Text = "Congratulations!!";
+            lblPoints.Text = "100";
+            lblSeconds.Text = "00";
+            hideMarks();
+            foreach (Team team in this.teams) highlightTeam(team, false);
+            screenShowing = screen.scores;
+            lockKeyboard();
+        }
+        private void playSound(SoundPlayer sound)
         {
             try
             {
-                rightSound = new SoundPlayer("Resources\\right.wav");
-                wrongSound = new SoundPlayer("Resources\\wrong.wav");
-                readySound = new SoundPlayer("Resources\\ready.wav");
-                rightSound.Load();
-                wrongSound.Load();
-                readySound.Load();
+                sound.Play();
             }
             catch (Exception)
             {
             };
-        }
-        private void playSound(SoundPlayer sound)
-        {
-            sound.Play();
         }
         private void hideMarks()
         {
@@ -324,7 +330,7 @@ namespace GameShow
             lblRight.Parent = lblMainBoxLabel; //Need this to make the Right Label Background Transparent based on the object that is behind
             lblWrong.Parent = lblMainBoxLabel; //Need this to make the Wrong Label Background Transparent based on the object that is behind
             lblRight.Top -= 50; //For some reason the ✔ mark drops to the bottom so this is to realign
-            lblWrong.Top -= 50; //For some reason the X mark drops to the bottom so this is to realign
+            lblWrong.Top -= 100; //For some reason the X mark drops to the bottom so this is to realign
             scoresPanel.BringToFront();
         }
         private void GameScreen_SizeChanged(object sender, EventArgs e)

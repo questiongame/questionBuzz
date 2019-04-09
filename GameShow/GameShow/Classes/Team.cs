@@ -18,7 +18,7 @@ namespace GameShow
             this.lblTeam = lblTeam;
             try
             {
-                sound = new SoundPlayer("Resources\\team" + teamNumber + ".wav");
+                sound = new SoundPlayer("Resources\\team" + (teamNumber + 1).ToString() + ".wav");
                 sound.Load();
             }
             catch (Exception)
