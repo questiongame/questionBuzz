@@ -47,12 +47,12 @@
             // 
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
-            this.lblTitle.Location = new System.Drawing.Point(111, 12);
+            this.lblTitle.Location = new System.Drawing.Point(101, 12);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(1);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(270, 88);
+            this.lblTitle.Size = new System.Drawing.Size(145, 88);
             this.lblTitle.TabIndex = 5;
-            this.lblTitle.Text = "Question 99";
+            this.lblTitle.Text = "Teams";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TeamsScreen
@@ -68,8 +68,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TeamsScreen_FormClosing);
             this.Load += new System.EventHandler(this.ReadyScreen_Load);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ReadyScreen_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 

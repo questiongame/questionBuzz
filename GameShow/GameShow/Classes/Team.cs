@@ -8,14 +8,14 @@ using System.Media;
 
 namespace GameShow
 {
-    class Team
+    class Team:Label
     {
-        internal Label lblTeam = null;
         internal SoundPlayer sound = null;
+        internal bool selected = false;
         internal int points = 0;
-        public Team(Label lblTeam, int teamNumber)
+        internal string teamName = "";
+        public Team(int teamNumber, bool selected)
         {
-            this.lblTeam = lblTeam;
             try
             {
                 sound = new SoundPlayer("Resources\\team" + (teamNumber + 1).ToString() + ".wav");
@@ -24,6 +24,7 @@ namespace GameShow
             catch (Exception)
             {
             };
+            this.selected = selected;
         }
     }
 }

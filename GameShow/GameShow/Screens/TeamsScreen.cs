@@ -13,72 +13,115 @@ namespace GameShow
 {
     public partial class TeamsScreen : Form
     {
-        private System.Windows.Forms.Label[] lblTeams;
+        private Team[] teams = null;
         private void loadTeams()
         {
-            String[] teams = null;
+            String[] teamLines = null;
             try
             {
                 //this file stores the list of teams
-                String teamsFile = File.ReadAllText("teams.txt");
-                teams = teamsFile.Split('\n');
+                String teamsFile = File.ReadAllText("Resources\\teams.txt");
+                teamLines = teamsFile.Split('\n');
             }
             catch (Exception)
             {
-                teams = new String[4];
-                teams[0] = "John";
-                teams[1] = "Mary";
-                teams[2] = "Carol";
-                teams[3] = "Ken";
-            }
-            // Here we dinamically create Label for each team on the 
-            this.lblTeams = new System.Windows.Forms.Label[teams.Length];
-            for (int i = 0; i < teams.Length; i++)
+                teamLines = new String[4];
+                teamLines[0] = "John";
+                teamLines[1] = "Mary";
+                teamLines[2] = "Carol";
+                teamLines[3] = "Ken";
+            };
+            try
             {
-                teams[i] = teams[i].Replace("\r", ""); //Need to remove new line char at end of line. Optionally use System.Environment.NewLine
-                this.lblTeams[i] = new System.Windows.Forms.Label();
-                this.lblTeams[i].BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                this.lblTeams[i].Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.lblTeams[i].ForeColor = System.Drawing.Color.Black;
-                this.lblTeams[i].ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-                this.lblTeams[i].Location = new System.Drawing.Point(586, 12 + (i * 55));
-                this.lblTeams[i].Margin = new System.Windows.Forms.Padding(1);
-                this.lblTeams[i].Name = "lblTeams" + i;
-                this.lblTeams[i].Size = new System.Drawing.Size(186, 46);
-                this.lblTeams[i].TabIndex = 15;
-                this.lblTeams[i].Text = teams[i];
-                this.lblTeams[i].TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                this.Controls.Add(this.lblTeams[i]);
+                // Here we dinamically create Label for each team on the 
+                this.teams = new Team[teamLines.Length];
+                for (int i = 0; i < teamLines.Length; i++)
+                {
+                    if (!(teamLines[i] == ""))
+                    {
+                        if (teamLines[i].Contains("\r"))
+                            teamLines[i] = teamLines[i].Replace("\r", ""); //Need to remove new line char at end of line. Optionally use System.Environment.NewLine
+                        String[] tlColumns = teamLines[i].Split('|');
+                        Team newLabel = new Team(i, tlColumns[0] == "1");
+                        newLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+                        newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                        newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                        newLabel.ForeColor = System.Drawing.Color.Black;
+                        newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+                        newLabel.Location = new System.Drawing.Point(280, 12 + (i * 55));
+                        newLabel.Margin = new System.Windows.Forms.Padding(1);
+                        newLabel.Name = "lblTeams" + i;
+                        newLabel.Size = new System.Drawing.Size(186, 46);
+                        newLabel.TabIndex = 15;
+                        newLabel.Text = newLabel.teamName = tlColumns[1];
+                        newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        newLabel.Click += new System.EventHandler(this.Label_Click);
+                        this.Controls.Add(newLabel);
+                        highlightTeam(newLabel);
+                        this.teams[i] = newLabel;
+                    }
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Error Creating Team Labels with the Config File");                
+            };
+        }
+        private void highlightTeam(Team team)
+        {
+            try
+            {
+                if (team.selected)
+                {
+                    team.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
+                    team.ForeColor = System.Drawing.Color.White;
+                }
+                else
+                {
+                    team.BackColor = System.Drawing.Color.White;
+                    team.ForeColor = System.Drawing.Color.Black;
+                }
+            }
+            catch (Exception)
+            {
+            };
         }
         public TeamsScreen()
         {
             loadTeams();
             InitializeComponent();
         }
-
-        private void ReadyScreen_KeyPress(object sender, KeyPressEventArgs e)
+        private void Label_Click(object sender, EventArgs e)
         {
-            String keyPressed = e.KeyChar.ToString();
-            if (keyPressed.ToLower().Equals("w"))
+            Team team = sender as Team;
+            if (team.selected)
             {
-                
-            }
-            else if (keyPressed.ToLower().Equals("r"))
-            {
-                
+                team.selected = false;
             }
             else
             {
-                
+                team.selected = true;
             }
-            //MessageBox.Show(keyPressed);
-            return;
+            highlightTeam(team);
         }
-
-        private void ReadyScreen_Load(object sender, EventArgs e)
+        private void ReadyScreen_Load(object sender, EventArgs e) { }
+        private void TeamsScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            try
+            {
+                //will write the new teams config
+                File.Delete("Resources\\teams.txt");
+                using (StreamWriter teamsFile = new StreamWriter("Resources\\teams.txt"))
+                {
+                    foreach (Team team in teams)
+                    {
+                        teamsFile.WriteLine((team.selected?"1":"0") + "|" + team.teamName);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            };
         }
     }
 }
