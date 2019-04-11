@@ -42,7 +42,7 @@ namespace GameShow
                         if (teamLines[i].Contains("\r"))
                             teamLines[i] = teamLines[i].Replace("\r", ""); //Need to remove new line char at end of line. Optionally use System.Environment.NewLine
                         String[] tlColumns = teamLines[i].Split('|');
-                        Team newLabel = new Team(i, tlColumns[0] == "1");
+                        Team newLabel = new Team(i, tlColumns[0] == "1", tlColumns[2], tlColumns[3]);
                         newLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
                         newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                         newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -115,7 +115,7 @@ namespace GameShow
                 {
                     foreach (Team team in teams)
                     {
-                        teamsFile.WriteLine((team.selected?"1":"0") + "|" + team.teamName);
+                        teamsFile.WriteLine((team.selected?"1":"0") + "|" + team.teamName + "|" + team.strSound + "|" + team.avatar );
                     }
                 }
             }

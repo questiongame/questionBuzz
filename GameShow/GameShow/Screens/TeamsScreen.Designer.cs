@@ -63,6 +63,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.picLogo);
+            this.MaximizeBox = false;
             this.Name = "TeamsScreen";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

@@ -84,7 +84,7 @@ namespace GameShow
                         String[] tlColumns = teamLines[i].Split('|');
                         if (tlColumns[0] == "1")
                         {
-                            Team newLabel = new Team(cTeam, true);
+                            Team newLabel = new Team(cTeam, true, tlColumns[2], tlColumns[3]);
                             newLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                             newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                             newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -96,6 +96,7 @@ namespace GameShow
                             newLabel.Size = new System.Drawing.Size(186, 46);
                             newLabel.TabIndex = 15;
                             newLabel.Text = tlColumns[1];
+                            newLabel.teamName = tlColumns[1];
                             newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                             this.Controls.Add(newLabel);
                             this.teams[cTeam] = newLabel;
@@ -254,6 +255,12 @@ namespace GameShow
         }
         private void drawScoresScreen()
         {
+            lblScores.Text = "";
+            string strScores = "";
+            foreach (Team team in teams)
+                if(team != null)
+                    strScores += team.teamName + '\t' + team.points + '\n';
+            lblScores.Text = strScores;
             scoresPanel.Show();
             screenShowing = screen.scores;
             lockKeyboard();
@@ -303,6 +310,11 @@ namespace GameShow
             lblWrong.Hide();
             questionMarked = true;
             lockKeyboard();
+            foreach (Team team in teams)
+            {
+                if (team !=null && team.selected)
+                    team.points += questions[questionIndex].points;
+            }
         }
         private void markWrong()
         {
@@ -311,6 +323,11 @@ namespace GameShow
             lblWrong.Show();
             questionMarked = true;
             lockKeyboard();
+            foreach (Team team in teams)
+            {
+                if (team != null && team.selected)
+                    team.points -= questions[questionIndex].points;
+            }
         }
         private void lockKeyboard()
         {
@@ -329,11 +346,13 @@ namespace GameShow
                     playSound(team.sound);
                     team.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
                     team.ForeColor = System.Drawing.Color.White;
+                    team.selected = true;
                 }
                 else
                 {
                     team.BackColor = System.Drawing.Color.White;
                     team.ForeColor = System.Drawing.Color.Black;
+                    team.selected = false;
                 }
             }
             catch (Exception)

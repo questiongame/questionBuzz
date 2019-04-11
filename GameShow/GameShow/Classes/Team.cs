@@ -11,20 +11,27 @@ namespace GameShow
     class Team:Label
     {
         internal SoundPlayer sound = null;
+        internal string strSound = "";
         internal bool selected = false;
         internal int points = 0;
         internal string teamName = "";
-        public Team(int teamNumber, bool selected)
+        internal int teamNumber = 0;
+        internal string avatar = "";
+        public Team(int teamNumber, bool selected, string strSound, string avatar)
         {
             try
             {
-                sound = new SoundPlayer("Resources\\team" + (teamNumber + 1).ToString() + ".wav");
-                sound.Load();
+                this.sound = new SoundPlayer("Resources\\" + strSound + ".wav");
+                this.sound.Load();
             }
             catch (Exception)
             {
             };
+            this.strSound = strSound;
             this.selected = selected;
+            this.teamNumber = teamNumber;
+            this.avatar = avatar;
+
         }
     }
 }
