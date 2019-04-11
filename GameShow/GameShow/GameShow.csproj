@@ -64,6 +64,12 @@
     <Compile Include="Classes\Team.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Screens\TestScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\TestScreen.Designer.cs">
+      <DependentUpon>TestScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\TeamsScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Screens\TestScreen.resx">
+      <DependentUpon>TestScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\TeamsScreen.resx">
       <DependentUpon>TeamsScreen.cs</DependentUpon>
     </EmbeddedResource>

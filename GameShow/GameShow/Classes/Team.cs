@@ -8,7 +8,7 @@ using System.Media;
 
 namespace GameShow
 {
-    class Team:Label
+    class Team : Label
     {
         internal SoundPlayer sound = null;
         internal string strSound = "";
@@ -31,7 +31,6 @@ namespace GameShow
             this.selected = selected;
             this.teamNumber = teamNumber;
             this.avatar = avatar;
-
         }
     }
 }

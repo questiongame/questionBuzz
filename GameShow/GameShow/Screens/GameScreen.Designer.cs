@@ -193,8 +193,8 @@
             this.lblScores.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblScores.Font = new System.Drawing.Font("Lucida Console", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScores.Location = new System.Drawing.Point(12, 118);
+            this.lblScores.Font = new System.Drawing.Font("Lucida Console", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScores.Location = new System.Drawing.Point(57, 118);
             this.lblScores.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this.lblScores.Name = "lblScores";
             this.lblScores.Size = new System.Drawing.Size(568, 430);

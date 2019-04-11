@@ -41,7 +41,8 @@ namespace GameShow
         }
         private void BtnTest_Click(object sender, EventArgs e)
         {
-
+            TestScreen ts = new TestScreen();
+            ts.ShowDialog();
         }
         private void btnStartGame_Click(object sender, EventArgs e)
         {
@@ -53,10 +54,6 @@ namespace GameShow
         {
             if (!musicPlaying)
                 playSound("menu");
-        }
-        private void Menu_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

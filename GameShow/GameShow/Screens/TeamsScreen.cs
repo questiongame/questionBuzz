@@ -26,10 +26,10 @@ namespace GameShow
             catch (Exception)
             {
                 teamLines = new String[4];
-                teamLines[0] = "John";
-                teamLines[1] = "Mary";
-                teamLines[2] = "Carol";
-                teamLines[3] = "Ken";
+                teamLines[0] = "1|John|sound1|avatar1";
+                teamLines[1] = "1|Mary|sound2|avatar2";
+                teamLines[2] = "1|Carol|sound3|avatar3";
+                teamLines[3] = "1|Ken|sound4|avatar4";
             };
             try
             {

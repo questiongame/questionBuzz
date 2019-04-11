@@ -66,10 +66,10 @@ namespace GameShow
             catch (Exception)
             {
                 teamLines = new String[4];
-                teamLines[0] = "John";
-                teamLines[1] = "Mary";
-                teamLines[2] = "Carol";
-                teamLines[3] = "Ken";
+                teamLines[0] = "1|John|sound1|avatar1";
+                teamLines[1] = "1|Mary|sound2|avatar2";
+                teamLines[2] = "1|Carol|sound3|avatar3";
+                teamLines[3] = "1|Ken|sound4|avatar4";
             };
             try
             {
@@ -264,7 +264,7 @@ namespace GameShow
                 if (team != null)
                 {
                     string spaces = " ";
-                    for (int i = 1; i < (10 - team.teamName.Length - team.points.ToString().Length); i++)
+                    for (int i = 1; i < (15 - team.teamName.Length - team.points.ToString().Length); i++)
                         spaces += " ";
                     strScores += team.teamName + spaces + team.points + " points" + '\n';
                 }
@@ -404,7 +404,7 @@ namespace GameShow
             //lblPoints.Font = new System.Drawing.Font("Arial", (this.Size.Width * 27 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             //lblSecondsLabel.Font = new System.Drawing.Font("Arial", (this.Size.Width * 27 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblScoresScreen.Font = new System.Drawing.Font("Arial", (this.Size.Width * 28 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblScores.Font = new System.Drawing.Font("Arial", (this.Size.Width * 20 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblScores.Font = new System.Drawing.Font("Lucida Console", (this.Size.Width * 25 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         }
         private void GameScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
