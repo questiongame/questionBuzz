@@ -16,7 +16,7 @@ namespace GameShow
     {
         private Team[] teams = null;
         private bool keyboardLocked = false;
-        private Question[] questions = null;        
+        private Question[] questions = null;
         private int questionIndex = 0;
         private bool questionMarked = false;
         private screen screenShowing = screen.ready;
@@ -260,8 +260,15 @@ namespace GameShow
             lblScores.Text = "";
             string strScores = "";
             foreach (Team team in teams)
-                if(team != null)
-                    strScores += team.teamName + "  -  " + team.points + " points" + '\n';
+            {
+                if (team != null)
+                {
+                    string spaces = " ";
+                    for (int i = 1; i < (10 - team.teamName.Length - team.points.ToString().Length); i++)
+                        spaces += " ";
+                    strScores += team.teamName + spaces + team.points + " points" + '\n';
+                }
+            }
             lblScores.Text = strScores;
             scoresPanel.Show();
             screenShowing = screen.scores;
