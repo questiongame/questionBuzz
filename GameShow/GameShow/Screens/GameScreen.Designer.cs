@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameScreen));
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblMainBoxLabel = new System.Windows.Forms.Label();
@@ -42,6 +43,7 @@
             this.lblScores = new System.Windows.Forms.Label();
             this.lblScoresScreen = new System.Windows.Forms.Label();
             this.picScoresLogo = new System.Windows.Forms.PictureBox();
+            this.stopWatch = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             this.scoresPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picScoresLogo)).BeginInit();
@@ -226,6 +228,11 @@
             this.picScoresLogo.TabIndex = 20;
             this.picScoresLogo.TabStop = false;
             // 
+            // stopWatch
+            // 
+            this.stopWatch.Interval = 1000;
+            this.stopWatch.Tick += new System.EventHandler(this.StopWatch_Tick);
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +279,7 @@
         private System.Windows.Forms.PictureBox picScoresLogo;
         private System.Windows.Forms.Label lblScores;
         private System.Windows.Forms.Label lblScoresScreen;
+        private System.Windows.Forms.Timer stopWatch;
     }
 }
 

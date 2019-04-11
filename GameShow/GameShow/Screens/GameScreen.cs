@@ -23,6 +23,7 @@ namespace GameShow
         private SoundPlayer rightSound = null;
         private SoundPlayer wrongSound = null;
         private SoundPlayer readySound = null;
+        private int timeRemaining = 0;
         private enum screen {ready, question, answer, scores, error};
         private void loadQuestions()
         {
@@ -202,23 +203,23 @@ namespace GameShow
                 {
                     switch (keyPressed)
                     {
-                        case "1": if (!keyboardLocked) { lockKeyboard(); highlightTeam(this.teams[0], true); } break;
-                        case "2": if (!keyboardLocked) { lockKeyboard(); highlightTeam(this.teams[1], true); } break;
-                        case "3": if (!keyboardLocked) { lockKeyboard(); highlightTeam(this.teams[2], true); } break;
-                        case "4": if (!keyboardLocked) { lockKeyboard(); highlightTeam(this.teams[3], true); } break;
-                        case "5": if (!keyboardLocked) { lockKeyboard(); highlightTeam(this.teams[4], true); } break;
-                        case "6": if (!keyboardLocked) { lockKeyboard(); highlightTeam(this.teams[5], true); } break;
-                        case "7": if (!keyboardLocked) { lockKeyboard(); highlightTeam(this.teams[6], true); } break;
-                        case "8": if (!keyboardLocked) { lockKeyboard(); highlightTeam(this.teams[7], true); } break;
-                        case "9": if (!keyboardLocked) { lockKeyboard(); highlightTeam(this.teams[8], true); } break;
-                        case "0": if (!keyboardLocked) { lockKeyboard(); highlightTeam(this.teams[9], true); } break;
+                        case "1": if (!keyboardLocked && this.teams[0] != null) { highlightTeam(this.teams[0], true); lockKeyboard(); } break;
+                        case "2": if (!keyboardLocked && this.teams[1] != null) { highlightTeam(this.teams[1], true); lockKeyboard(); } break;
+                        case "3": if (!keyboardLocked && this.teams[2] != null) { highlightTeam(this.teams[2], true); lockKeyboard(); } break;
+                        case "4": if (!keyboardLocked && this.teams[3] != null) { highlightTeam(this.teams[3], true); lockKeyboard(); } break;
+                        case "5": if (!keyboardLocked && this.teams[4] != null) { highlightTeam(this.teams[4], true); lockKeyboard(); } break;
+                        case "6": if (!keyboardLocked && this.teams[5] != null) { highlightTeam(this.teams[5], true); lockKeyboard(); } break;
+                        case "7": if (!keyboardLocked && this.teams[6] != null) { highlightTeam(this.teams[6], true); lockKeyboard(); } break;
+                        case "8": if (!keyboardLocked && this.teams[7] != null) { highlightTeam(this.teams[7], true); lockKeyboard(); } break;
+                        case "9": if (!keyboardLocked && this.teams[8] != null) { highlightTeam(this.teams[8], true); lockKeyboard(); } break;
+                        case "0": if (!keyboardLocked && this.teams[9] != null) { highlightTeam(this.teams[9], true); lockKeyboard(); } break;
                         default: break;
                     }
                 }
                 catch (Exception)
                 {
-                    unlockKeyboard();
-                }
+                    //unlockKeyboard();
+                };
             }
         }        
         private void drawReadyScreen()
@@ -241,6 +242,7 @@ namespace GameShow
             lblMainBoxLabel.Text = questions[questionIndex].strQuestion;
             hideMarks();
             foreach (Team team in this.teams) highlightTeam(team, false);
+            timeRemaining = 0;
             screenShowing = screen.question;
             unlockKeyboard();
         }
@@ -259,7 +261,7 @@ namespace GameShow
             string strScores = "";
             foreach (Team team in teams)
                 if(team != null)
-                    strScores += team.teamName + '\t' + team.points + '\n';
+                    strScores += team.teamName + "  -  " + team.points + " points" + '\n';
             lblScores.Text = strScores;
             scoresPanel.Show();
             screenShowing = screen.scores;
@@ -270,8 +272,8 @@ namespace GameShow
             scoresPanel.Hide();
             lblTitle.Text = "Error";
             lblMainBoxLabel.Text = "Error Reading Questions File";
-            lblPoints.Text = "000";
-            lblSeconds.Text = "00";
+            lblPoints.Text = "---";
+            lblSeconds.Text = "--";
             screenShowing = screen.error;
             lockKeyboard();
         }
@@ -279,11 +281,22 @@ namespace GameShow
         {
             scoresPanel.Hide();
             lblTitle.Text = "The End";
-            lblMainBoxLabel.Text = "Congratulations!!";
-            lblPoints.Text = "100";
-            lblSeconds.Text = "00";
+            lblSeconds.Text = "--";
             hideMarks();
-            foreach (Team team in this.teams) highlightTeam(team, false);
+            Team maxPoints = null;
+            foreach (Team team in this.teams)
+            {
+                highlightTeam(team, false);
+                if (team != null && (maxPoints == null || maxPoints.points < team.points))
+                    maxPoints = team;
+            }
+            if (maxPoints != null)
+            {
+                lblMainBoxLabel.Text = "Congratulations!!" + '\n' + maxPoints.teamName;
+                lblPoints.Text = maxPoints.points.ToString();
+                highlightTeam(maxPoints, true);
+                lockKeyboard();
+            }
             screenShowing = screen.scores;
             lockKeyboard();
         }
@@ -310,6 +323,7 @@ namespace GameShow
             lblWrong.Hide();
             questionMarked = true;
             lockKeyboard();
+            stopWatch.Enabled = false;
             foreach (Team team in teams)
             {
                 if (team !=null && team.selected)
@@ -323,6 +337,7 @@ namespace GameShow
             lblWrong.Show();
             questionMarked = true;
             lockKeyboard();
+            stopWatch.Enabled = false;
             foreach (Team team in teams)
             {
                 if (team != null && team.selected)
@@ -347,6 +362,8 @@ namespace GameShow
                     team.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
                     team.ForeColor = System.Drawing.Color.White;
                     team.selected = true;
+                    timeRemaining = questions[questionIndex].time;
+                    stopWatch.Enabled = true;
                 }
                 else
                 {
@@ -357,7 +374,7 @@ namespace GameShow
             }
             catch (Exception)
             {
-                if (team == null)
+                if (screenShowing == screen.question && team == null)
                     unlockKeyboard();
             };
         }
@@ -386,6 +403,21 @@ namespace GameShow
         {
             teams = null;
             questions = null;
+        }
+        private void StopWatch_Tick(object sender, EventArgs e)
+        {
+            if (screenShowing == screen.question)
+            {
+                if (timeRemaining > 0)
+                {
+                    timeRemaining--;
+                    lblSeconds.Text = timeRemaining.ToString();
+                }
+                else
+                {
+                    stopWatch.Enabled = false;
+                }
+            }
         }
     }
 }
