@@ -59,7 +59,7 @@ namespace GameShow
                             newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                             newLabel.ForeColor = System.Drawing.Color.Black;
                             newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-                            newLabel.Location = new System.Drawing.Point(280, 12 + (cTeam * 55));
+                            newLabel.Location = new System.Drawing.Point(280, 15 + (cTeam * 55));
                             newLabel.Margin = new System.Windows.Forms.Padding(1);
                             newLabel.Name = "lblTeams" + i;
                             newLabel.Size = new System.Drawing.Size(186, 46);
@@ -89,8 +89,8 @@ namespace GameShow
                 if (team != null)
                 {
                     team.Font = new System.Drawing.Font("Arial", (this.Size.Width * 20 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    team.Location = new System.Drawing.Point(280, (12 + (i * this.Size.Height * 55 / 800) + (i==0?0:10)));
-                    //team.Size = new System.Drawing.Size(186, 46);
+                    team.Location = new System.Drawing.Point((this.Size.Width * 280 / 800), (15 + i + (i * this.Size.Height * 55 / 600)));
+                    team.Size = new System.Drawing.Size((this.Size.Width * 186 / 800), (this.Size.Height * 46 / 600));
                     i++;
                 }
         }

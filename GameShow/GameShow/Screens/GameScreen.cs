@@ -405,6 +405,14 @@ namespace GameShow
             //lblSecondsLabel.Font = new System.Drawing.Font("Arial", (this.Size.Width * 27 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblScoresScreen.Font = new System.Drawing.Font("Arial", (this.Size.Width * 28 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblScores.Font = new System.Drawing.Font("Lucida Console", (this.Size.Width * 25 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            int i = 0;
+            foreach (Team team in teams)
+                if (team != null)
+                {
+                    team.Location = new System.Drawing.Point(team.Location.X, (12 + (i * this.Size.Height * 55 / 600)));
+                    team.Size = new System.Drawing.Size(team.Size.Width, (this.Size.Height * 46 / 600));
+                    i++;
+                }
         }
         private void GameScreen_FormClosed(object sender, FormClosedEventArgs e)
         {

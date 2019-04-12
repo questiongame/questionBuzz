@@ -41,6 +41,7 @@ namespace GameShow
         }
         private void BtnTest_Click(object sender, EventArgs e)
         {
+            musicPlaying = false;
             TestScreen ts = new TestScreen();
             ts.ShowDialog();
         }
