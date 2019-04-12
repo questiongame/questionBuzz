@@ -82,7 +82,6 @@ namespace GameShow
         private void GameScreen_SizeChanged(object sender, EventArgs e)
         {
             //Dinamically change the Font Size of the Texts when resizing the screen
-            //lblMainBoxLabel.Font = new System.Drawing.Font("Arial", (this.Size.Width * 48 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblTitle.Font = new System.Drawing.Font("Arial", (this.Size.Width * 28 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             int i = 0;
             foreach (Team team in teams)
