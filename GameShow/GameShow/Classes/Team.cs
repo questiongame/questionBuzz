@@ -17,6 +17,7 @@ namespace GameShow
         internal string teamName = "";
         internal int teamNumber = 0;
         internal string avatar = "";
+        internal string characteristics = "";
         public Team(int teamNumber, bool selected, string strSound, string avatar)
         {
             try

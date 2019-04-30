@@ -35,30 +35,36 @@ namespace GameShow
             {
                 // Here we dinamically create Label for each team on the 
                 this.teams = new Team[teamLines.Length];
+                int x = 0, y = 0;
                 for (int i = 0; i < teamLines.Length; i++)
                 {
-                    if (!(teamLines[i] == ""))
+                    if (teamLines[i] != "")
                     {
                         if (teamLines[i].Contains("\r"))
                             teamLines[i] = teamLines[i].Replace("\r", ""); //Need to remove new line char at end of line. Optionally use System.Environment.NewLine
                         String[] tlColumns = teamLines[i].Split('|');
-                        Team newLabel = new Team(i, tlColumns[0] == "1", tlColumns[2], tlColumns[3]);
-                        newLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-                        newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                        newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                        newLabel.ForeColor = System.Drawing.Color.Black;
-                        newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-                        newLabel.Location = new System.Drawing.Point(280, 12 + (i * 55));
-                        newLabel.Margin = new System.Windows.Forms.Padding(1);
-                        newLabel.Name = "lblTeams" + i;
-                        newLabel.Size = new System.Drawing.Size(186, 46);
-                        newLabel.TabIndex = 15;
-                        newLabel.Text = newLabel.teamName = tlColumns[1];
-                        newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                        newLabel.Click += new System.EventHandler(this.Label_Click);
-                        this.Controls.Add(newLabel);
-                        highlightTeam(newLabel);
-                        this.teams[i] = newLabel;
+                        if (tlColumns.Length >= 4)
+                        {
+                            Team newLabel = new Team(i, tlColumns[0] == "1", tlColumns[2], tlColumns[3]);
+                            newLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
+                            newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                            newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                            newLabel.ForeColor = System.Drawing.Color.Black;
+                            newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+                            newLabel.Location = new System.Drawing.Point(50 + (x * 170), 100 + (y * 50));
+                            y++;
+                            if (y > 7) { x++; y = 0; }
+                            newLabel.Margin = new System.Windows.Forms.Padding(1);
+                            newLabel.Name = "lblTeams" + i;
+                            newLabel.Size = new System.Drawing.Size(140, 40);
+                            newLabel.TabIndex = 15;
+                            newLabel.Text = newLabel.teamName = tlColumns[1];
+                            newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                            newLabel.Click += new System.EventHandler(this.Label_Click);
+                            this.Controls.Add(newLabel);
+                            highlightTeam(newLabel);
+                            this.teams[i] = newLabel;
+                        }
                     }
                 }
             }
@@ -122,6 +128,21 @@ namespace GameShow
             catch (Exception)
             {
             };
+        }
+        private void TeamsScreen_SizeChanged(object sender, EventArgs e)
+        {
+            double fontConstant = Math.Sqrt(Math.Pow(this.Size.Width, 2) + Math.Pow(this.Size.Height, 2));
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", ((float)fontConstant * 28 / 1000), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            int x = 0, y = 0;
+            foreach (Team team in teams)
+                if (team != null)
+                {
+                    team.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 20 / 1000), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    team.Location = new System.Drawing.Point(50 + (x * this.Size.Width * 170 / 800), (100 + (y * this.Size.Height * 50 / 600)));
+                    team.Size = new System.Drawing.Size(this.Size.Width * 140 / 800, (this.Size.Height * 40 / 600));
+                    y++;
+                    if (y > 7) { x++; y = 0; }
+                }
         }
     }
 }

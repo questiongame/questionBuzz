@@ -14,15 +14,9 @@ namespace GameShow
         [STAThread]
         static void Main()
         {
-            DateTime limitDate = Convert.ToDateTime("Apr 30, 2019 12:00:00 AM");
-            if (DateTime.Today <= limitDate)
-            {
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Menu());
-            }
-            else
-                MessageBox.Show("Please Purchase the Complete Version");
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Menu());
         }
     }
 }
