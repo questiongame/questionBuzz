@@ -106,6 +106,14 @@ namespace GameShow
         private void ReadyScreen_Load(object sender, EventArgs e)
         {
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            try
+            {
+                this.BackgroundImage = Image.FromFile("Resources\\SelectTeams.png");
+                this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            }
+            catch (Exception)
+            {
+            };
         }
         private void TeamsScreen_FormClosing(object sender, FormClosingEventArgs e)
         {

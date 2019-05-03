@@ -59,5 +59,15 @@ namespace GameShow.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SelectTeams {
+            get {
+                object obj = ResourceManager.GetObject("SelectTeams", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
