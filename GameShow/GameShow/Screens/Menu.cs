@@ -15,6 +15,7 @@ namespace GameShow
     {
         private bool musicPlaying = false;
         private SoundPlayer simpleSound = null;
+        private GameColors gameColors = new GameColors();
         public Menu()
         {
             playSound("menu");
@@ -33,6 +34,16 @@ namespace GameShow
             catch (Exception)
             {
             };
+        }
+        private void loadColors()
+        {
+            this.BackColor = gameColors.DefaultBackground;
+            this.btnTeams.BackColor = gameColors.MenuBoxFill;
+            this.btnTeams.ForeColor = gameColors.MenuBoxText;
+            this.btnTest.BackColor = gameColors.MenuBoxFill;
+            this.btnTest.ForeColor = gameColors.MenuBoxText;
+            this.btnStartGame.BackColor = gameColors.MenuBoxFill;
+            this.btnStartGame.ForeColor = gameColors.MenuBoxText;
         }
         private void BtnTeams_Click(object sender, EventArgs e)
         {
@@ -55,6 +66,10 @@ namespace GameShow
         {
             if (!musicPlaying)
                 playSound("menu");
+        }
+        private void Menu_Load(object sender, EventArgs e)
+        {
+            loadColors();
         }
     }
 }

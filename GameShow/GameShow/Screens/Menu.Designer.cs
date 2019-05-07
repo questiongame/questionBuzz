@@ -38,10 +38,8 @@
             // 
             // btnTeams
             // 
-            this.btnTeams.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.btnTeams.FlatAppearance.BorderSize = 0;
             this.btnTeams.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeams.ForeColor = System.Drawing.Color.White;
             this.btnTeams.Location = new System.Drawing.Point(223, 194);
             this.btnTeams.Name = "btnTeams";
             this.btnTeams.Size = new System.Drawing.Size(320, 69);
@@ -52,10 +50,8 @@
             // 
             // btnTest
             // 
-            this.btnTest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.btnTest.FlatAppearance.BorderSize = 0;
             this.btnTest.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTest.ForeColor = System.Drawing.Color.White;
             this.btnTest.Location = new System.Drawing.Point(223, 304);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(320, 69);
@@ -66,10 +62,8 @@
             // 
             // btnStartGame
             // 
-            this.btnStartGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.btnStartGame.FlatAppearance.BorderSize = 0;
             this.btnStartGame.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartGame.ForeColor = System.Drawing.Color.White;
             this.btnStartGame.Location = new System.Drawing.Point(223, 415);
             this.btnStartGame.Name = "btnStartGame";
             this.btnStartGame.Size = new System.Drawing.Size(320, 69);
@@ -91,7 +85,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.picLogo);
             this.Controls.Add(this.btnStartGame);
@@ -104,6 +97,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Activated += new System.EventHandler(this.Menu_Activated);
+            this.Load += new System.EventHandler(this.Menu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             this.ResumeLayout(false);
 

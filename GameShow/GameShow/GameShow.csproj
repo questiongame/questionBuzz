@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\GameColors.cs" />
     <Compile Include="Classes\Question.cs" />
     <Compile Include="Classes\Team.cs">
       <SubType>Component</SubType>

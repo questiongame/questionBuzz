@@ -1,0 +1,10 @@
+Default Background|167|219|246
+Screen Title Text|9|89|145
+Menu Box Fill|9|89|145
+Menu Box Text|255|255|255
+No Select Box Fill|255|255|255
+No Select Box Text|0|0|0
+Selected Box Fill|9|89|145
+Selected Box Text|255|255|255
+Timer-Point Box Fill|255|255|255
+Timer-Point Box Text|0|0|0

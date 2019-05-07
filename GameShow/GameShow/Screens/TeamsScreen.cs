@@ -48,8 +48,8 @@ namespace GameShow
                             newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                             newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                             newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-                            newLabel.Location = new System.Drawing.Point(50 + (x * 170), 100 + (y++ * 50));
-                            if (y > 7) { x++; y = 0; }
+                            newLabel.Location = new System.Drawing.Point(50 + (x * 170), 100 + (y++ * 55));
+                            if (y > 6) { x++; y = 0; }
                             newLabel.Margin = new System.Windows.Forms.Padding(1);
                             newLabel.Name = "lblTeams" + c;
                             newLabel.Size = new System.Drawing.Size(140, 40);
@@ -59,7 +59,7 @@ namespace GameShow
                             newLabel.Click += new System.EventHandler(this.Label_Click);
                             this.Controls.Add(newLabel);
                             highlightTeam(newLabel);
-                            if (tlColumns.Length > 4) for (int i = 4; i < tlColumns.Length; i++) newLabel.characteristics += tlColumns[i] + "|";
+                            if (tlColumns.Length > 4) for (int i = 4; i < tlColumns.Length; i++) newLabel.characteristics += tlColumns[i] + "|";//used to load all the characteristics into a single field
                             this.teams[c++] = newLabel;
                         }
                     }
@@ -97,10 +97,7 @@ namespace GameShow
         private void Label_Click(object sender, EventArgs e)
         {
             Team team = sender as Team;
-            if (team.selected)
-                team.selected = false;
-            else
-                team.selected = true;
+            team.selected = !team.selected;
             highlightTeam(team);
         }
         private void ReadyScreen_Load(object sender, EventArgs e)
@@ -142,9 +139,9 @@ namespace GameShow
                 if (team != null)
                 {
                     team.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 20), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    team.Location = new System.Drawing.Point(50 + (x * this.Size.Width * 170 / 800), (100 + (y++ * this.Size.Height * 50 / 600)));
+                    team.Location = new System.Drawing.Point(50 + (x * this.Size.Width * 170 / 800), (100 + (y++ * this.Size.Height * 55 / 600)));
                     team.Size = new System.Drawing.Size(this.Size.Width * 140 / 800, (this.Size.Height * 40 / 600));
-                    if (y > 7) { x++; y = 0; }
+                    if (y > 6) { x++; y = 0; }
                 }
         }
     }
