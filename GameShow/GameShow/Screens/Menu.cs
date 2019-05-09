@@ -26,8 +26,7 @@ namespace GameShow
         {
             try
             {
-                if (simpleSound == null)
-                    simpleSound = new SoundPlayer("Resources\\" + sound + ".wav");
+                if (simpleSound == null) simpleSound = new SoundPlayer("Resources\\" + sound + ".wav");
                 simpleSound.Play();
                 musicPlaying = true;
             }
@@ -47,7 +46,7 @@ namespace GameShow
         }
         private void BtnTeams_Click(object sender, EventArgs e)
         {
-            TeamsScreen ts = new TeamsScreen();
+            TeamsScreen ts = new TeamsScreen(gameColors);
             ts.ShowDialog();
         }
         private void BtnTest_Click(object sender, EventArgs e)
@@ -64,12 +63,32 @@ namespace GameShow
         }
         private void Menu_Activated(object sender, EventArgs e)
         {
-            if (!musicPlaying)
-                playSound("menu");
+            if (!musicPlaying) playSound("menu");
         }
         private void Menu_Load(object sender, EventArgs e)
         {
             loadColors();
+            try
+            {
+                this.BackgroundImage = Image.FromFile("Resources\\MainMenu.png");
+                this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            }
+            catch (Exception)
+            {
+            };
+        }
+        private void Menu_SizeChanged(object sender, EventArgs e)
+        {
+            double fontConstant = Math.Sqrt(Math.Pow(this.Size.Width, 2) + Math.Pow(this.Size.Height, 2)) / 1000;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", ((float)fontConstant * 28), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Size = new System.Drawing.Size(426, 88);
+            this.btnTeams.Font = new System.Drawing.Font("Arial", (float)(fontConstant * 22), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTeams.Size = new System.Drawing.Size(320, 69);
+            this.btnTest.Font = new System.Drawing.Font("Arial", (float)(fontConstant * 22), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTest.Size = new System.Drawing.Size(320, 69);
+            this.btnStartGame.Font = new System.Drawing.Font("Arial", (float)(fontConstant * 22), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartGame.Size = new System.Drawing.Size(320, 69);
+
         }
     }
 }

@@ -14,6 +14,7 @@ namespace GameShow
     public partial class TeamsScreen : Form
     {
         private Team[] teams = null;
+        private GameColors gameColors = null;
         private void loadTeams()
         {
             String[] teamLines = null;
@@ -89,8 +90,9 @@ namespace GameShow
             {
             };
         }
-        public TeamsScreen()
+        internal TeamsScreen(GameColors gameColors)
         {
+            this.gameColors = gameColors;
             loadTeams();
             InitializeComponent();
         }
@@ -102,7 +104,7 @@ namespace GameShow
         }
         private void ReadyScreen_Load(object sender, EventArgs e)
         {
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.BackColor = gameColors.DefaultBackground;
             try
             {
                 this.BackgroundImage = Image.FromFile("Resources\\SelectTeams.png");
@@ -116,18 +118,19 @@ namespace GameShow
         {
             try
             {
-                //will write the new teams config
                 File.Delete("Resources\\teams.txt");
                 using (StreamWriter teamsFile = new StreamWriter("Resources\\teams.txt"))
                 {
-                    foreach (Team team in teams)
+                    foreach (Team team in this.teams)
                     {
-                        teamsFile.WriteLine((team.selected?"1":"0") + "|" + team.teamName + "|" + team.strSound + "|" + team.avatar + "|" + team.characteristics);
+                        if (team != null)
+                            teamsFile.WriteLine((team.selected?"1":"0") + "|" + team.teamName + "|" + team.strSound + "|" + team.avatar + "|" + team.characteristics);
                     }
                 }
             }
             catch (Exception)
             {
+                MessageBox.Show("Error writing changes to teams.txt");
             };
         }
         private void TeamsScreen_SizeChanged(object sender, EventArgs e)
@@ -135,7 +138,7 @@ namespace GameShow
             double fontConstant = Math.Sqrt(Math.Pow(this.Size.Width, 2) + Math.Pow(this.Size.Height, 2)) / 1000;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", ((float)fontConstant * 28), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             int x = 0, y = 0;
-            foreach (Team team in teams)
+            foreach (Team team in this.teams)
                 if (team != null)
                 {
                     team.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 20), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

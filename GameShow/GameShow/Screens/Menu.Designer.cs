@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.btnTeams = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
             this.btnStartGame = new System.Windows.Forms.Button();
-            this.picLogo = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnTeams
             // 
+            this.btnTeams.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTeams.FlatAppearance.BorderSize = 0;
             this.btnTeams.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeams.Location = new System.Drawing.Point(223, 194);
+            this.btnTeams.Location = new System.Drawing.Point(223, 136);
             this.btnTeams.Name = "btnTeams";
             this.btnTeams.Size = new System.Drawing.Size(320, 69);
             this.btnTeams.TabIndex = 0;
@@ -50,9 +51,12 @@
             // 
             // btnTest
             // 
+            this.btnTest.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTest.FlatAppearance.BorderSize = 0;
             this.btnTest.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTest.Location = new System.Drawing.Point(223, 304);
+            this.btnTest.Location = new System.Drawing.Point(223, 255);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(320, 69);
             this.btnTest.TabIndex = 1;
@@ -62,9 +66,12 @@
             // 
             // btnStartGame
             // 
+            this.btnStartGame.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStartGame.FlatAppearance.BorderSize = 0;
             this.btnStartGame.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartGame.Location = new System.Drawing.Point(223, 415);
+            this.btnStartGame.Location = new System.Drawing.Point(223, 373);
             this.btnStartGame.Name = "btnStartGame";
             this.btnStartGame.Size = new System.Drawing.Size(320, 69);
             this.btnStartGame.TabIndex = 2;
@@ -72,33 +79,39 @@
             this.btnStartGame.UseVisualStyleBackColor = false;
             this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
-            // picLogo
+            // lblTitle
             // 
-            this.picLogo.Image = ((System.Drawing.Image)(resources.GetObject("picLogo.Image")));
-            this.picLogo.Location = new System.Drawing.Point(223, 59);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Size = new System.Drawing.Size(320, 92);
-            this.picLogo.TabIndex = 4;
-            this.picLogo.TabStop = false;
+            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Arial", 28F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(89)))), ((int)(((byte)(145)))));
+            this.lblTitle.Location = new System.Drawing.Point(174, 10);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(1);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(407, 85);
+            this.lblTitle.TabIndex = 6;
+            this.lblTitle.Text = "Menu";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.picLogo);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.btnTeams);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
             this.Name = "Menu";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.Activated += new System.EventHandler(this.Menu_Activated);
             this.Load += new System.EventHandler(this.Menu_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            this.SizeChanged += new System.EventHandler(this.Menu_SizeChanged);
             this.ResumeLayout(false);
 
         }
@@ -108,6 +121,6 @@
         private System.Windows.Forms.Button btnTeams;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button btnStartGame;
-        private System.Windows.Forms.PictureBox picLogo;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
