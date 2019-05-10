@@ -76,19 +76,27 @@ namespace GameShow
             catch (Exception)
             {
             };
+            setLayout();
         }
         private void Menu_SizeChanged(object sender, EventArgs e)
         {
+            setLayout();
+        }
+        private void setLayout()
+        {
             double fontConstant = Math.Sqrt(Math.Pow(this.Size.Width, 2) + Math.Pow(this.Size.Height, 2)) / 1000;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", ((float)fontConstant * 28), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Size = new System.Drawing.Size(426, 88);
+            this.lblTitle.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 30), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Size = new System.Drawing.Size((426 * this.Size.Width / 800), (88 * this.Size.Height / 600));
+            this.lblTitle.Location = new System.Drawing.Point(this.Size.Width / 2 - this.lblTitle.Size.Width / 2, 12);
             this.btnTeams.Font = new System.Drawing.Font("Arial", (float)(fontConstant * 22), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeams.Size = new System.Drawing.Size(320, 69);
+            this.btnTeams.Size = new System.Drawing.Size((320 * this.Size.Width / 800), (15 * this.Size.Height / 100));
+            this.btnTeams.Location = new System.Drawing.Point(this.Size.Width / 2 - this.btnTeams.Size.Width / 2, this.Size.Height / 50 * 10);
             this.btnTest.Font = new System.Drawing.Font("Arial", (float)(fontConstant * 22), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTest.Size = new System.Drawing.Size(320, 69);
+            this.btnTest.Size = new System.Drawing.Size((320 * this.Size.Width / 800), (15 * this.Size.Height / 100));
+            this.btnTest.Location = new System.Drawing.Point(this.Size.Width / 2 - this.btnTest.Size.Width / 2, this.Size.Height / 50 * 22);
             this.btnStartGame.Font = new System.Drawing.Font("Arial", (float)(fontConstant * 22), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartGame.Size = new System.Drawing.Size(320, 69);
-
+            this.btnStartGame.Size = new System.Drawing.Size((320 * this.Size.Width / 800), (15 * this.Size.Height / 100));
+            this.btnStartGame.Location = new System.Drawing.Point(this.Size.Width / 2 - this.btnStartGame.Size.Width / 2, this.Size.Height / 50 * 34);
         }
     }
 }

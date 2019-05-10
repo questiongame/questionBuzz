@@ -85,12 +85,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Arial", 28F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(89)))), ((int)(((byte)(145)))));
-            this.lblTitle.Location = new System.Drawing.Point(174, 10);
+            this.lblTitle.Location = new System.Drawing.Point(170, 12);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(1);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(407, 85);
+            this.lblTitle.Size = new System.Drawing.Size(426, 88);
             this.lblTitle.TabIndex = 6;
             this.lblTitle.Text = "Menu";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

@@ -47,13 +47,9 @@ namespace GameShow
                         {
                             Team newLabel = new Team(c, tlColumns[0] == "1", tlColumns[2], tlColumns[3]);
                             newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                            newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                             newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-                            newLabel.Location = new System.Drawing.Point(50 + (x * 170), 100 + (y++ * 55));
-                            if (y > 6) { x++; y = 0; }
                             newLabel.Margin = new System.Windows.Forms.Padding(1);
                             newLabel.Name = "lblTeams" + c;
-                            newLabel.Size = new System.Drawing.Size(140, 40);
                             newLabel.TabIndex = 15;
                             newLabel.Text = newLabel.teamName = tlColumns[1];
                             newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -93,8 +89,9 @@ namespace GameShow
         internal TeamsScreen(GameColors gameColors)
         {
             this.gameColors = gameColors;
-            loadTeams();
             InitializeComponent();
+            loadTeams();
+            setLayout();
         }
         private void Label_Click(object sender, EventArgs e)
         {
@@ -135,15 +132,21 @@ namespace GameShow
         }
         private void TeamsScreen_SizeChanged(object sender, EventArgs e)
         {
+            setLayout();
+        }
+        private void setLayout()
+        {
             double fontConstant = Math.Sqrt(Math.Pow(this.Size.Width, 2) + Math.Pow(this.Size.Height, 2)) / 1000;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", ((float)fontConstant * 28), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 30), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Size = new System.Drawing.Size((426 * this.Size.Width / 800), (88 * this.Size.Height / 600));
+            this.lblTitle.Location = new System.Drawing.Point(this.Size.Width / 2 - this.lblTitle.Size.Width / 2, 12);
             int x = 0, y = 0;
             foreach (Team team in this.teams)
                 if (team != null)
                 {
                     team.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 20), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    team.Location = new System.Drawing.Point(50 + (x * this.Size.Width * 170 / 800), (100 + (y++ * this.Size.Height * 55 / 600)));
-                    team.Size = new System.Drawing.Size(this.Size.Width * 140 / 800, (this.Size.Height * 40 / 600));
+                    team.Size = new System.Drawing.Size((this.Size.Width * 140 / 800), (this.Size.Height * 40 / 600));
+                    team.Location = new System.Drawing.Point(50 + (x * this.Size.Width * 170 / 800), (120 + (y++ * this.Size.Height * 55 / 600)));
                     if (y > 6) { x++; y = 0; }
                 }
         }
