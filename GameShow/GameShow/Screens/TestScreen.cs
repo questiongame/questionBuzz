@@ -17,10 +17,12 @@ namespace GameShow
         private Team[] teams = null;
         private int teamValidating = 1;
         private int cTeam = 0;
-        public TestScreen()
+        private GameColors gameColors = new GameColors();
+        internal TestScreen(GameColors gameColors)
         {
-            loadTeams();
+            this.gameColors = gameColors;
             InitializeComponent();
+            loadTeams();
         }
         private void loadTeams()
         {
@@ -56,20 +58,15 @@ namespace GameShow
                             Team newLabel = new Team(cTeam, true, tlColumns[2], tlColumns[3]);
                             newLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
                             newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                            newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                            newLabel.ForeColor = System.Drawing.Color.Black;
                             newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-                            newLabel.Location = new System.Drawing.Point(280, 15 + (cTeam * 55));
                             newLabel.Margin = new System.Windows.Forms.Padding(1);
                             newLabel.Name = "lblTeams" + i;
-                            newLabel.Size = new System.Drawing.Size(186, 46);
                             newLabel.TabIndex = 15;
-                            newLabel.Text = tlColumns[1];
-                            newLabel.teamName = tlColumns[1];
+                            newLabel.Text = newLabel.teamName = tlColumns[1];
                             newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                             this.Controls.Add(newLabel);
-                            this.teams[cTeam] = newLabel;
-                            cTeam++;
+                            highlightTeam(newLabel, false);
+                            this.teams[cTeam++] = newLabel;
                         }
                     }
                 }
@@ -81,14 +78,20 @@ namespace GameShow
         }
         private void GameScreen_SizeChanged(object sender, EventArgs e)
         {
-            //Dinamically change the Font Size of the Texts when resizing the screen
-            lblTitle.Font = new System.Drawing.Font("Arial", (this.Size.Width * 28 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            setLayout();
+        }
+        private void setLayout()
+        {
+            double fontConstant = Math.Sqrt(Math.Pow(this.Size.Width, 2) + Math.Pow(this.Size.Height, 2)) / 1000;
+            this.lblTitle.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 30), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Size = new System.Drawing.Size((426 * this.Size.Width / 800), (88 * this.Size.Height / 600));
+            this.lblTitle.Location = new System.Drawing.Point(this.Size.Width / 2 - this.lblTitle.Size.Width / 2, 12);
             int i = 0;
             foreach (Team team in teams)
                 if (team != null)
                 {
                     team.Font = new System.Drawing.Font("Arial", (this.Size.Width * 20 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    team.Location = new System.Drawing.Point((this.Size.Width * 280 / 800), (15 + i + (i * this.Size.Height * 55 / 600)));
+                    team.Location = new System.Drawing.Point((this.Size.Width * 280 / 800), (100 + i + (i * this.Size.Height * 55 / 600)));
                     team.Size = new System.Drawing.Size((this.Size.Width * 186 / 800), (this.Size.Height * 46 / 600));
                     i++;
                 }
@@ -100,12 +103,12 @@ namespace GameShow
         private void ReadyScreen_KeyPress(object sender, KeyPressEventArgs e)
         {
             String keyPressed = e.KeyChar.ToString().ToLower();
-            if (keyPressed.Equals("w"))
+            if (keyPressed.Equals("u"))
             {
                 if (teamValidating > 1)
                     teamValidating--;
             }
-            else if (keyPressed.Equals("r"))
+            else if (keyPressed.Equals("v"))
             {
                 if (teamValidating < cTeam)
                     teamValidating++;                
@@ -151,20 +154,34 @@ namespace GameShow
                 if (highlighted)
                 {
                     playSound(team.sound);
-                    team.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
-                    team.ForeColor = System.Drawing.Color.White;
+                    team.BackColor = gameColors.SelectedBoxFill;
+                    team.ForeColor = gameColors.SelectedBoxText;
                     team.selected = true;
                 }
                 else
                 {
-                    team.BackColor = System.Drawing.Color.White;
-                    team.ForeColor = System.Drawing.Color.Black;
+                    team.BackColor = gameColors.NoSelectBoxFill;
+                    team.ForeColor = gameColors.NoSelectBoxText;
                     team.selected = false;
                 }
             }
             catch (Exception)
             {
             };
+        }
+        private void TestScreen_Load(object sender, EventArgs e)
+        {
+            this.BackColor = gameColors.DefaultBackground;
+            this.lblTitle.ForeColor = gameColors.ScreenTitleText;
+            try
+            {
+                this.BackgroundImage = Image.FromFile("Resources\\TestBuzzer.png");
+                this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            }
+            catch (Exception)
+            {
+            };
+            setLayout();
         }
     }
 }

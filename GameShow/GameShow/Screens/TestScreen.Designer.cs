@@ -38,17 +38,16 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTitle.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
-            this.lblTitle.Location = new System.Drawing.Point(101, 12);
+            this.lblTitle.Location = new System.Drawing.Point(260, 9);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(220, 88);
             this.lblTitle.TabIndex = 5;
             this.lblTitle.Text = "Test";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // picLogo
             // 
@@ -58,6 +57,7 @@
             this.picLogo.Size = new System.Drawing.Size(85, 85);
             this.picLogo.TabIndex = 18;
             this.picLogo.TabStop = false;
+            this.picLogo.Visible = false;
             // 
             // TestScreen
             // 
@@ -73,6 +73,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GameScreen_FormClosed);
+            this.Load += new System.EventHandler(this.TestScreen_Load);
             this.SizeChanged += new System.EventHandler(this.GameScreen_SizeChanged);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ReadyScreen_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();

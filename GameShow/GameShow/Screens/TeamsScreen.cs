@@ -37,7 +37,7 @@ namespace GameShow
             {
                 // Here we dinamically create Label for each team on the Teams selection screen
                 this.teams = new Team[teamLines.Length];
-                int x = 0, y = 0, c = 0;
+                int c = 0;
                 foreach (String teamLine in teamLines)
                 {
                     if (teamLine != "")
@@ -56,7 +56,7 @@ namespace GameShow
                             newLabel.Click += new System.EventHandler(this.Label_Click);
                             this.Controls.Add(newLabel);
                             highlightTeam(newLabel);
-                            if (tlColumns.Length > 4) for (int i = 4; i < tlColumns.Length; i++) newLabel.characteristics += tlColumns[i] + "|";//used to load all the characteristics into a single field
+                            for (int i = 4; i < tlColumns.Length; i++) newLabel.characteristics += "|" + tlColumns[i];//used to load all the characteristics into a single field
                             this.teams[c++] = newLabel;
                         }
                     }
@@ -73,13 +73,13 @@ namespace GameShow
             {
                 if (team.selected)
                 {
-                    team.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
-                    team.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+                    team.BackColor = gameColors.SelectedBoxFill;
+                    team.ForeColor = gameColors.SelectedBoxText;
                 }
                 else
                 {
-                    team.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-                    team.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+                    team.BackColor = gameColors.NoSelectBoxFill;
+                    team.ForeColor = gameColors.NoSelectBoxText;
                 }
             }
             catch (Exception)
@@ -102,6 +102,7 @@ namespace GameShow
         private void ReadyScreen_Load(object sender, EventArgs e)
         {
             this.BackColor = gameColors.DefaultBackground;
+            this.lblTitle.ForeColor = gameColors.ScreenTitleText;
             try
             {
                 this.BackgroundImage = Image.FromFile("Resources\\SelectTeams.png");
@@ -121,7 +122,7 @@ namespace GameShow
                     foreach (Team team in this.teams)
                     {
                         if (team != null)
-                            teamsFile.WriteLine((team.selected?"1":"0") + "|" + team.teamName + "|" + team.strSound + "|" + team.avatar + "|" + team.characteristics);
+                            teamsFile.WriteLine((team.selected?"1":"0") + "|" + team.teamName + "|" + team.strSound + "|" + team.avatar + team.characteristics);
                     }
                 }
             }

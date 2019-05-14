@@ -52,7 +52,7 @@ namespace GameShow
         private void BtnTest_Click(object sender, EventArgs e)
         {
             musicPlaying = false;
-            TestScreen ts = new TestScreen();
+            TestScreen ts = new TestScreen(gameColors);
             ts.ShowDialog();
         }
         private void btnStartGame_Click(object sender, EventArgs e)
