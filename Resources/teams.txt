@@ -1,10 +1,10 @@
-1|John|sound1|avatar1|Gender|Male|Age|45|Weight|150|Height|5'10"|Health|Very fit|Occupation|Garbage Man||||||||
-1|Mary|sound2|avatar2|Gender|Female|Age|25|Weight|100|Height|5'4"|Health|Diabetic||||||||
-1|Carol|sound3|avatar3||||||||
-0|Ken|sound4|avatar4||||||||
-1|Mike|sound5|avatar5||||||||
-1|Randy|sound6|avatar6||||||||
-1|Sue|sound7|avatar7||||||||
-1|Stanley|sound8|avatar8||||||||
-1|Mark|sound9|avatar9||||||||
-1|Kaleb|sound10|avatar10||||||||
+1|John|sound1|avatar1|Gender|Male|Age|45|Weight|150|Height|5'10"|Health|Very fit|Occupation|Garbage Man
+1|Mary|sound2|avatar2|Gender|Female|Age|25|Weight|100|Height|5'4"|Health|Diabetic
+1|Carol|sound3|avatar3
+0|Ken|sound4|avatar4
+1|Mike|sound5|avatar5
+1|Randy|sound6|avatar6
+1|Sue|sound7|avatar7
+1|Stanley|sound8|avatar8
+0|Mark|sound9|avatar9
+1|Kaleb|sound10|avatar10

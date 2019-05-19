@@ -35,9 +35,8 @@ namespace GameShow
             };
             try
             {
-                // Here we dinamically create Label for each team on the Teams selection screen
                 this.teams = new Team[teamLines.Length];
-                int c = 0;
+                int cTeam = 0;
                 foreach (String teamLine in teamLines)
                 {
                     if (teamLine != "")
@@ -45,19 +44,18 @@ namespace GameShow
                         String[] tlColumns = teamLine.Contains("\r") ? teamLine.Replace("\r", "").Split('|') : teamLine.Split('|');
                         if (tlColumns.Length >= 4)
                         {
-                            Team newLabel = new Team(c, tlColumns[0] == "1", tlColumns[2], tlColumns[3]);
+                            Team newLabel = new Team(cTeam, tlColumns[0] == "1", Team.getKey(cTeam), tlColumns);
                             newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                            newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-                            newLabel.Margin = new System.Windows.Forms.Padding(1);
-                            newLabel.Name = "lblTeams" + c;
-                            newLabel.TabIndex = 15;
-                            newLabel.Text = newLabel.teamName = tlColumns[1];
+                            //newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+                            //newLabel.Margin = new System.Windows.Forms.Padding(1);
+                            newLabel.Name = "lblTeams" + cTeam;
+                            //newLabel.TabIndex = 15;
+                            newLabel.Text = newLabel.teamName;
                             newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                             newLabel.Click += new System.EventHandler(this.Label_Click);
                             this.Controls.Add(newLabel);
                             highlightTeam(newLabel);
-                            for (int i = 4; i < tlColumns.Length; i++) newLabel.characteristics += "|" + tlColumns[i];//used to load all the characteristics into a single field
-                            this.teams[c++] = newLabel;
+                            this.teams[cTeam++] = newLabel;
                         }
                     }
                 }

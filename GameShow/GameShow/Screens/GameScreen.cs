@@ -76,32 +76,28 @@ namespace GameShow
                 // Here we dinamically create Label for each team on the 
                 this.teams = new Team[teamLines.Length];
                 int cTeam = 0;
-                for (int i = 0; i < teamLines.Length; i++)
+                foreach (String teamLine in teamLines)
                 {
-                    if (!(teamLines[i] == ""))
+                    if (teamLine != "")
                     {
-                        if (teamLines[i].Contains("\r"))
-                            teamLines[i] = teamLines[i].Replace("\r", ""); //Need to remove new line char at end of line. Optionally use System.Environment.NewLine
-                        String[] tlColumns = teamLines[i].Split('|');
+                        String[] tlColumns = teamLine.Contains("\r") ? teamLine.Replace("\r", "").Split('|') : teamLine.Split('|');
                         if (tlColumns[0] == "1")
                         {
-                            Team newLabel = new Team(cTeam, true, tlColumns[2], tlColumns[3]);
+                            Team newLabel = new Team(cTeam, true, Team.getKey(cTeam), tlColumns);
                             newLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                             newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                             newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                             newLabel.ForeColor = System.Drawing.Color.Black;
-                            newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+                            //newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
                             newLabel.Location = new System.Drawing.Point(586, 12 + (cTeam * 55));
-                            newLabel.Margin = new System.Windows.Forms.Padding(1);
-                            newLabel.Name = "lblTeams" + i;
+                            //newLabel.Margin = new System.Windows.Forms.Padding(1);
+                            newLabel.Name = "lblTeams" + cTeam;
                             newLabel.Size = new System.Drawing.Size(186, 46);
-                            newLabel.TabIndex = 15;
-                            newLabel.Text = tlColumns[1];
-                            newLabel.teamName = tlColumns[1];
+                            //newLabel.TabIndex = 15;
+                            newLabel.Text = newLabel.teamName;
                             newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                             this.Controls.Add(newLabel);
-                            this.teams[cTeam] = newLabel;
-                            cTeam++;
+                            this.teams[cTeam++] = newLabel;
                         }
                     }
                 }

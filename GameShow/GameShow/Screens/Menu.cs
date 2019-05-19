@@ -34,16 +34,6 @@ namespace GameShow
             {
             };
         }
-        private void loadColors()
-        {
-            this.BackColor = gameColors.DefaultBackground;
-            this.btnTeams.BackColor = gameColors.MenuBoxFill;
-            this.btnTeams.ForeColor = gameColors.MenuBoxText;
-            this.btnTest.BackColor = gameColors.MenuBoxFill;
-            this.btnTest.ForeColor = gameColors.MenuBoxText;
-            this.btnStartGame.BackColor = gameColors.MenuBoxFill;
-            this.btnStartGame.ForeColor = gameColors.MenuBoxText;
-        }
         private void BtnTeams_Click(object sender, EventArgs e)
         {
             TeamsScreen ts = new TeamsScreen(gameColors);
@@ -97,6 +87,16 @@ namespace GameShow
             this.btnStartGame.Font = new System.Drawing.Font("Arial", (float)(fontConstant * 22), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartGame.Size = new System.Drawing.Size((320 * this.Size.Width / 800), (15 * this.Size.Height / 100));
             this.btnStartGame.Location = new System.Drawing.Point(this.Size.Width / 2 - this.btnStartGame.Size.Width / 2, this.Size.Height / 50 * 34);
+        }
+        private void loadColors()
+        {
+            this.BackColor = gameColors.DefaultBackground;
+            this.btnTeams.BackColor = gameColors.MenuBoxFill;
+            this.btnTeams.ForeColor = gameColors.MenuBoxText;
+            this.btnTest.BackColor = gameColors.MenuBoxFill;
+            this.btnTest.ForeColor = gameColors.MenuBoxText;
+            this.btnStartGame.BackColor = gameColors.MenuBoxFill;
+            this.btnStartGame.ForeColor = gameColors.MenuBoxText;
         }
     }
 }

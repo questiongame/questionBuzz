@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Media;
 using System.IO;
@@ -15,7 +15,7 @@ namespace GameShow
     public partial class TestScreen : Form
     {
         private Team[] teams = null;
-        private int teamValidating = 1;
+        private int teamValidating = 0;
         private int cTeam = 0;
         private GameColors gameColors = new GameColors();
         internal TestScreen(GameColors gameColors)
@@ -46,25 +46,14 @@ namespace GameShow
                 // Here we dinamically create Label for each team on the 
                 this.teams = new Team[teamLines.Length];
                 cTeam = 0;
-                for (int i = 0; i < teamLines.Length; i++)
+                foreach (String teamLine in teamLines)
                 {
-                    if (!(teamLines[i] == ""))
+                    if (teamLine != "")
                     {
-                        if (teamLines[i].Contains("\r"))
-                            teamLines[i] = teamLines[i].Replace("\r", ""); //Need to remove new line char at end of line. Optionally use System.Environment.NewLine
-                        String[] tlColumns = teamLines[i].Split('|');
+                        String[] tlColumns = teamLine.Contains("\r") ? teamLine.Replace("\r", "").Split('|') : teamLine.Split('|');
                         if (tlColumns[0] == "1")
                         {
-                            Team newLabel = new Team(cTeam, true, tlColumns[2], tlColumns[3]);
-                            newLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
-                            newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                            newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-                            newLabel.Margin = new System.Windows.Forms.Padding(1);
-                            newLabel.Name = "lblTeams" + i;
-                            newLabel.TabIndex = 15;
-                            newLabel.Text = newLabel.teamName = tlColumns[1];
-                            newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-                            this.Controls.Add(newLabel);
+                            Team newLabel = new Team(cTeam, false, Team.getKey(cTeam), tlColumns);
                             highlightTeam(newLabel, false);
                             this.teams[cTeam++] = newLabel;
                         }
@@ -86,15 +75,28 @@ namespace GameShow
             this.lblTitle.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 30), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Size = new System.Drawing.Size((426 * this.Size.Width / 800), (88 * this.Size.Height / 600));
             this.lblTitle.Location = new System.Drawing.Point(this.Size.Width / 2 - this.lblTitle.Size.Width / 2, 12);
-            int i = 0;
-            foreach (Team team in teams)
-                if (team != null)
+            //this.lblTeamData
+            //this.lblTeamName
+            //this.lblTeam
+            //this.picAvatar
+        }
+        private void setTeam()
+        {
+            unselectTeams();
+            if (this.teams[this.teamValidating] != null)
+            {
+                this.lblTeamName.Text = this.teams[this.teamValidating].teamName;
+                this.lblTeam.Text = this.teams[this.teamValidating].teamName;
+                this.lblTeamData.Text = this.teams[this.teamValidating].characteristics;
+                try
                 {
-                    team.Font = new System.Drawing.Font("Arial", (this.Size.Width * 20 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    team.Location = new System.Drawing.Point((this.Size.Width * 280 / 800), (100 + i + (i * this.Size.Height * 55 / 600)));
-                    team.Size = new System.Drawing.Size((this.Size.Width * 186 / 800), (this.Size.Height * 46 / 600));
-                    i++;
+                    this.picAvatar.Image = Image.FromFile("Resources\\" + this.teams[this.teamValidating].avatar + ".png");
+                    this.picAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 }
+                catch (Exception)
+                {
+                };
+            }
         }
         private void GameScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -105,18 +107,27 @@ namespace GameShow
             String keyPressed = e.KeyChar.ToString().ToLower();
             if (keyPressed.Equals("u"))
             {
-                if (teamValidating > 1)
+                if (teamValidating > 0)
+                {
                     teamValidating--;
+                    setTeam();
+                }
             }
             else if (keyPressed.Equals("v"))
             {
-                if (teamValidating < cTeam)
-                    teamValidating++;                
+                if (teamValidating < cTeam - 1)
+                {
+                    teamValidating++;
+                    setTeam();
+                }
             }
             else
             {
                 try
                 {
+                    if (this.teams[teamValidating] != null && keyPressed == this.teams[teamValidating].key)
+                        highlightTeam(this.teams[teamValidating], true);
+                    /*
                     switch (keyPressed)
                     {
                         case "1": if (teamValidating == 1 && this.teams[0] != null) { highlightTeam(this.teams[0], true); } break;
@@ -131,6 +142,7 @@ namespace GameShow
                         case "0": if (teamValidating == 10 && this.teams[9] != null) { highlightTeam(this.teams[9], true); } break;
                         default: break;
                     }
+                    */
                 }
                 catch (Exception)
                 {
@@ -143,9 +155,7 @@ namespace GameShow
             {
                 sound.Play();
             }
-            catch (Exception)
-            {
-            };
+            catch (Exception){};
         }
         private void highlightTeam(Team team, bool highlighted)
         {
@@ -154,34 +164,47 @@ namespace GameShow
                 if (highlighted)
                 {
                     playSound(team.sound);
-                    team.BackColor = gameColors.SelectedBoxFill;
-                    team.ForeColor = gameColors.SelectedBoxText;
+                    this.lblTeam.BackColor = gameColors.SelectedBoxFill;
+                    this.lblTeam.ForeColor = gameColors.SelectedBoxText;
                     team.selected = true;
-                }
-                else
-                {
-                    team.BackColor = gameColors.NoSelectBoxFill;
-                    team.ForeColor = gameColors.NoSelectBoxText;
-                    team.selected = false;
+                    this.stopWatch.Enabled = true;
                 }
             }
-            catch (Exception)
-            {
-            };
+            catch (Exception){};
         }
         private void TestScreen_Load(object sender, EventArgs e)
         {
             this.BackColor = gameColors.DefaultBackground;
             this.lblTitle.ForeColor = gameColors.ScreenTitleText;
+            this.lblTeamData.ForeColor = gameColors.ScreenTitleText;
+            this.lblTeamName.ForeColor = gameColors.ScreenTitleText;
             try
             {
                 this.BackgroundImage = Image.FromFile("Resources\\TestBuzzer.png");
                 this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             }
-            catch (Exception)
-            {
-            };
+            catch (Exception){};
+            unselectTeams();
             setLayout();
+            setTeam();
+        }
+        private void unselectTeams()
+        {
+            this.lblTeam.BackColor = gameColors.NoSelectBoxFill;
+            this.lblTeam.ForeColor = gameColors.NoSelectBoxText;
+            try
+            {
+                foreach (Team team in this.teams)
+                {
+                    if (team != null) team.selected = false;
+                }
+            }
+            catch (Exception){};
+        }
+        private void StopWatch_Tick(object sender, EventArgs e)
+        {
+            unselectTeams();
+            stopWatch.Enabled = false;
         }
     }
 }

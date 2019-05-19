@@ -39,14 +39,14 @@
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.lblSecondsLabel = new System.Windows.Forms.Label();
             this.lblPointsLabel = new System.Windows.Forms.Label();
-            this.scoresPanel = new System.Windows.Forms.Panel();
-            this.lblScores = new System.Windows.Forms.Label();
-            this.lblScoresScreen = new System.Windows.Forms.Label();
-            this.picScoresLogo = new System.Windows.Forms.PictureBox();
             this.stopWatch = new System.Windows.Forms.Timer(this.components);
+            this.picScoresLogo = new System.Windows.Forms.PictureBox();
+            this.lblScoresScreen = new System.Windows.Forms.Label();
+            this.lblScores = new System.Windows.Forms.Label();
+            this.scoresPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
-            this.scoresPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picScoresLogo)).BeginInit();
+            this.scoresPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -175,18 +175,34 @@
             this.lblPointsLabel.Text = "Points";
             this.lblPointsLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // scoresPanel
+            // stopWatch
             // 
-            this.scoresPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.stopWatch.Interval = 1000;
+            this.stopWatch.Tick += new System.EventHandler(this.StopWatch_Tick);
+            // 
+            // picScoresLogo
+            // 
+            this.picScoresLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picScoresLogo.Image = ((System.Drawing.Image)(resources.GetObject("picScoresLogo.Image")));
+            this.picScoresLogo.Location = new System.Drawing.Point(440, 12);
+            this.picScoresLogo.Name = "picScoresLogo";
+            this.picScoresLogo.Size = new System.Drawing.Size(320, 92);
+            this.picScoresLogo.TabIndex = 20;
+            this.picScoresLogo.TabStop = false;
+            // 
+            // lblScoresScreen
+            // 
+            this.lblScoresScreen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.scoresPanel.Controls.Add(this.lblScores);
-            this.scoresPanel.Controls.Add(this.lblScoresScreen);
-            this.scoresPanel.Controls.Add(this.picScoresLogo);
-            this.scoresPanel.Location = new System.Drawing.Point(0, 1);
-            this.scoresPanel.Name = "scoresPanel";
-            this.scoresPanel.Size = new System.Drawing.Size(784, 559);
-            this.scoresPanel.TabIndex = 19;
+            this.lblScoresScreen.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScoresScreen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
+            this.lblScoresScreen.Location = new System.Drawing.Point(9, 12);
+            this.lblScoresScreen.Margin = new System.Windows.Forms.Padding(0);
+            this.lblScoresScreen.Name = "lblScoresScreen";
+            this.lblScoresScreen.Size = new System.Drawing.Size(291, 92);
+            this.lblScoresScreen.TabIndex = 21;
+            this.lblScoresScreen.Text = "Scoreboard";
+            this.lblScoresScreen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblScores
             // 
@@ -204,34 +220,18 @@
     "eam 9  999 points\r\nTeam 10 999 points";
             this.lblScores.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblScoresScreen
+            // scoresPanel
             // 
-            this.lblScoresScreen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.scoresPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblScoresScreen.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScoresScreen.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
-            this.lblScoresScreen.Location = new System.Drawing.Point(9, 12);
-            this.lblScoresScreen.Margin = new System.Windows.Forms.Padding(0);
-            this.lblScoresScreen.Name = "lblScoresScreen";
-            this.lblScoresScreen.Size = new System.Drawing.Size(291, 92);
-            this.lblScoresScreen.TabIndex = 21;
-            this.lblScoresScreen.Text = "Scoreboard";
-            this.lblScoresScreen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // picScoresLogo
-            // 
-            this.picScoresLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.picScoresLogo.Image = ((System.Drawing.Image)(resources.GetObject("picScoresLogo.Image")));
-            this.picScoresLogo.Location = new System.Drawing.Point(440, 12);
-            this.picScoresLogo.Name = "picScoresLogo";
-            this.picScoresLogo.Size = new System.Drawing.Size(320, 92);
-            this.picScoresLogo.TabIndex = 20;
-            this.picScoresLogo.TabStop = false;
-            // 
-            // stopWatch
-            // 
-            this.stopWatch.Interval = 1000;
-            this.stopWatch.Tick += new System.EventHandler(this.StopWatch_Tick);
+            this.scoresPanel.Controls.Add(this.lblScores);
+            this.scoresPanel.Controls.Add(this.lblScoresScreen);
+            this.scoresPanel.Controls.Add(this.picScoresLogo);
+            this.scoresPanel.Location = new System.Drawing.Point(0, 1);
+            this.scoresPanel.Name = "scoresPanel";
+            this.scoresPanel.Size = new System.Drawing.Size(784, 559);
+            this.scoresPanel.TabIndex = 19;
             // 
             // GameScreen
             // 
@@ -259,8 +259,8 @@
             this.SizeChanged += new System.EventHandler(this.GameScreen_SizeChanged);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ReadyScreen_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
-            this.scoresPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picScoresLogo)).EndInit();
+            this.scoresPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -275,11 +275,11 @@
         private System.Windows.Forms.PictureBox picLogo;
         private System.Windows.Forms.Label lblSecondsLabel;
         private System.Windows.Forms.Label lblPointsLabel;
-        private System.Windows.Forms.Panel scoresPanel;
-        private System.Windows.Forms.PictureBox picScoresLogo;
-        private System.Windows.Forms.Label lblScores;
-        private System.Windows.Forms.Label lblScoresScreen;
         private System.Windows.Forms.Timer stopWatch;
+        private System.Windows.Forms.PictureBox picScoresLogo;
+        private System.Windows.Forms.Label lblScoresScreen;
+        private System.Windows.Forms.Label lblScores;
+        private System.Windows.Forms.Panel scoresPanel;
     }
 }
 
