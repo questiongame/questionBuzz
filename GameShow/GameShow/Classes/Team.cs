@@ -26,6 +26,8 @@ namespace GameShow
             this.avatar = teamColumns[3];
             this.teamNumber = teamNumber;
             this.selected = selected;
+            this.Name = "lblTeams" + teamNumber;
+            this.Text = this.teamName;
             this.key = key;
             for (int i = 4; i < teamColumns.Length; i++) this.characteristics += "|" + teamColumns[i];//used to load all the characteristics into a single field
             try

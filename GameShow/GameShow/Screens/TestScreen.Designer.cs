@@ -40,11 +40,9 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Arial", 32F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(89)))), ((int)(((byte)(145)))));
             this.lblTitle.Location = new System.Drawing.Point(9, 9);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(0);
@@ -52,7 +50,6 @@
             this.lblTitle.Size = new System.Drawing.Size(439, 68);
             this.lblTitle.TabIndex = 5;
             this.lblTitle.Text = "Test Buzzers";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // stopWatch
             // 
@@ -61,12 +58,10 @@
             // 
             // lblTeamData
             // 
-            this.lblTeamData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTeamData.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTeamData.BackColor = System.Drawing.Color.Transparent;
             this.lblTeamData.Font = new System.Drawing.Font("Arial", 22F, System.Drawing.FontStyle.Bold);
-            this.lblTeamData.Location = new System.Drawing.Point(10, 180);
+            this.lblTeamData.Location = new System.Drawing.Point(9, 169);
             this.lblTeamData.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this.lblTeamData.Name = "lblTeamData";
             this.lblTeamData.Size = new System.Drawing.Size(443, 369);
@@ -75,8 +70,10 @@
             // 
             // picAvatar
             // 
-            this.picAvatar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picAvatar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.picAvatar.BackColor = System.Drawing.Color.Transparent;
+            this.picAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picAvatar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picAvatar.Location = new System.Drawing.Point(458, 30);
             this.picAvatar.Name = "picAvatar";
             this.picAvatar.Size = new System.Drawing.Size(320, 360);
@@ -85,7 +82,8 @@
             // 
             // lblTeam
             // 
-            this.lblTeam.Font = new System.Drawing.Font("Arial", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTeam.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblTeam.Font = new System.Drawing.Font("Arial", 26F, System.Drawing.FontStyle.Bold);
             this.lblTeam.Location = new System.Drawing.Point(517, 421);
             this.lblTeam.Name = "lblTeam";
             this.lblTeam.Size = new System.Drawing.Size(194, 63);
@@ -95,11 +93,9 @@
             // 
             // lblTeamName
             // 
-            this.lblTeamName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTeamName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTeamName.BackColor = System.Drawing.Color.Transparent;
-            this.lblTeamName.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Bold);
+            this.lblTeamName.Font = new System.Drawing.Font("Arial", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTeamName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(89)))), ((int)(((byte)(145)))));
             this.lblTeamName.Location = new System.Drawing.Point(9, 88);
             this.lblTeamName.Margin = new System.Windows.Forms.Padding(0);
@@ -107,7 +103,6 @@
             this.lblTeamName.Size = new System.Drawing.Size(439, 68);
             this.lblTeamName.TabIndex = 26;
             this.lblTeamName.Text = "John";
-            this.lblTeamName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TestScreen
             // 

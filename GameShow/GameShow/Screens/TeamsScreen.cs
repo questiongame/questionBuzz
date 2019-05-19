@@ -20,13 +20,11 @@ namespace GameShow
             String[] teamLines = null;
             try
             {
-                //this file stores the list of teams
                 String teamsFile = File.ReadAllText("Resources\\teams.txt");
                 teamLines = teamsFile.Split('\n');
             }
             catch (Exception)
             {
-                //in case the teams file is not present
                 teamLines = new String[4];
                 teamLines[0] = "1|John|sound1|avatar1";
                 teamLines[1] = "1|Mary|sound2|avatar2";
@@ -46,11 +44,6 @@ namespace GameShow
                         {
                             Team newLabel = new Team(cTeam, tlColumns[0] == "1", Team.getKey(cTeam), tlColumns);
                             newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                            //newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-                            //newLabel.Margin = new System.Windows.Forms.Padding(1);
-                            newLabel.Name = "lblTeams" + cTeam;
-                            //newLabel.TabIndex = 15;
-                            newLabel.Text = newLabel.teamName;
                             newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                             newLabel.Click += new System.EventHandler(this.Label_Click);
                             this.Controls.Add(newLabel);
@@ -80,9 +73,7 @@ namespace GameShow
                     team.ForeColor = gameColors.NoSelectBoxText;
                 }
             }
-            catch (Exception)
-            {
-            };
+            catch (Exception){};
         }
         internal TeamsScreen(GameColors gameColors)
         {

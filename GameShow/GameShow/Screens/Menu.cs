@@ -30,9 +30,7 @@ namespace GameShow
                 simpleSound.Play();
                 musicPlaying = true;
             }
-            catch (Exception)
-            {
-            };
+            catch (Exception){};
         }
         private void BtnTeams_Click(object sender, EventArgs e)
         {
@@ -63,9 +61,7 @@ namespace GameShow
                 this.BackgroundImage = Image.FromFile("Resources\\MainMenu.png");
                 this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             }
-            catch (Exception)
-            {
-            };
+            catch (Exception){};
             setLayout();
         }
         private void Menu_SizeChanged(object sender, EventArgs e)
