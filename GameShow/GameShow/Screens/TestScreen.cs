@@ -74,8 +74,8 @@ namespace GameShow
             this.lblTitle.Size = new System.Drawing.Size((426 * this.Size.Width / 800), (88 * this.Size.Height / 600));
             this.lblTitle.Location = new System.Drawing.Point(9, 12);
             this.lblTeamName.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 24), System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTeamName.Size = new System.Drawing.Size((426 * this.Size.Width / 800), (68 * this.Size.Height / 600));
-            this.lblTeamName.Location = new System.Drawing.Point(9, this.Size.Height / 50 * 8);
+            this.lblTeamName.Size = new System.Drawing.Size((426 * this.Size.Width / 800), (61 * this.Size.Height / 600));
+            this.lblTeamName.Location = new System.Drawing.Point(9, this.Size.Height / 50 * 9);
             this.lblTeamData.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 22), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTeamData.Location = new System.Drawing.Point(9, this.Size.Height / 50 * 14);
             this.lblTeamData.Size = new System.Drawing.Size((426 * this.Size.Width / 800), (this.Size.Height - this.lblTeamData.Location.Y - 20));
