@@ -46,7 +46,7 @@ namespace GameShow
         private void btnStartGame_Click(object sender, EventArgs e)
         {
             musicPlaying = false;
-            GameScreen rs = new GameScreen();
+            GameScreen rs = new GameScreen(gameColors);
             rs.ShowDialog();
         }
         private void Menu_Activated(object sender, EventArgs e)

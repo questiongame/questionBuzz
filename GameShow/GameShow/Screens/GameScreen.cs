@@ -15,37 +15,40 @@ namespace GameShow
     public partial class GameScreen : Form
     {
         private Team[] teams = null;
-        private bool keyboardLocked = false;
         private Question[] questions = null;
         private int questionIndex = 0;
         private bool questionMarked = false;
+        private bool keyboardLocked = false;
         private screen screenShowing = screen.ready;
         private SoundPlayer rightSound = null;
         private SoundPlayer wrongSound = null;
         private SoundPlayer readySound = null;
+        private SoundPlayer gameOverSound = null;
+        private SoundPlayer timeOutSound = null;
+        private GameColors gameColors = new GameColors();
         private int timeRemaining = 0;
-        private enum screen {ready, question, answer, scores, error};
+        private enum screen {ready, question, answer, error, end};
         private void loadQuestions()
         {
             try
             {
-                //this file stores the list of questions
-                String[] questionLines = null;
                 String questionsFile = File.ReadAllText("Resources\\questions.txt");
-                questionLines = questionsFile.Split('\n');
+                String[] questionLines = questionsFile.Split('\n');
                 questions = new Question[questionLines.Length];
-                for (int i = 0; i < questionLines.Length; i++)
+                int cQuestion = 0;
+                foreach (String questionLine in questionLines)
                 {
-                    if (questionLines[i].Contains("\r"))
-                        questionLines[i] = questionLines[i].Replace("\r", "");
-                    String[] qlColumns = questionLines[i].Split('|');
-                    questions[i] = new Question(
-                        Convert.ToInt32(qlColumns[0]), 
-                        Convert.ToInt32(qlColumns[1]), 
-                        Convert.ToInt32(qlColumns[2]), 
-                        qlColumns[3], 
-                        qlColumns[4]
-                        );
+                    if (questionLine != "")
+                    {
+                        String[] qlColumns = questionLine.Contains("\r") ? questionLine.Replace("\r", "").Split('|') : questionLine.Split('|');
+                        questions[cQuestion++] = new Question(
+                            Convert.ToInt32(qlColumns[0]),
+                            Convert.ToInt32(qlColumns[1]),
+                            Convert.ToInt32(qlColumns[2]),
+                            qlColumns[3],
+                            qlColumns[4]
+                            );
+                    }
                 }
                 drawReadyScreen();
             }
@@ -59,7 +62,6 @@ namespace GameShow
             String[] teamLines = null;
             try
             {
-                //this file stores the list of teams
                 String teamsFile = File.ReadAllText("Resources\\teams.txt");
                 teamLines = teamsFile.Split('\n');
             }
@@ -73,7 +75,6 @@ namespace GameShow
             };
             try
             {
-                // Here we dinamically create Label for each team on the 
                 this.teams = new Team[teamLines.Length];
                 int cTeam = 0;
                 foreach (String teamLine in teamLines)
@@ -83,20 +84,17 @@ namespace GameShow
                         String[] tlColumns = teamLine.Contains("\r") ? teamLine.Replace("\r", "").Split('|') : teamLine.Split('|');
                         if (tlColumns[0] == "1")
                         {
-                            Team newLabel = new Team(cTeam, true, Team.getKey(cTeam), tlColumns);
+                            Team newLabel = new Team(cTeam, false, Team.getKey(cTeam), tlColumns);
                             newLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
                             newLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                             newLabel.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                            newLabel.ForeColor = System.Drawing.Color.Black;
-                            //newLabel.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
                             newLabel.Location = new System.Drawing.Point(586, 12 + (cTeam * 55));
-                            //newLabel.Margin = new System.Windows.Forms.Padding(1);
-                            newLabel.Name = "lblTeams" + cTeam;
                             newLabel.Size = new System.Drawing.Size(186, 46);
-                            //newLabel.TabIndex = 15;
+                            newLabel.Name = "lblTeams" + cTeam;
                             newLabel.Text = newLabel.teamName;
                             newLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
                             this.Controls.Add(newLabel);
+                            highlightTeam(newLabel, false);
                             this.teams[cTeam++] = newLabel;
                         }
                     }
@@ -112,18 +110,37 @@ namespace GameShow
             try
             {
                 rightSound = new SoundPlayer("Resources\\right.wav");
-                wrongSound = new SoundPlayer("Resources\\wrong.wav");
-                readySound = new SoundPlayer("Resources\\ready.wav");
                 rightSound.Load();
+            }
+            catch (Exception) { };
+            try
+            {
+                wrongSound = new SoundPlayer("Resources\\wrong.wav");
                 wrongSound.Load();
+            }
+            catch (Exception) { };
+            try
+            {
+                readySound = new SoundPlayer("Resources\\ready.wav");
                 readySound.Load();
             }
-            catch (Exception)
+            catch (Exception) { };
+            try
             {
-            };
+                gameOverSound = new SoundPlayer("Resources\\GameOver.wav");
+                gameOverSound.Load();
+            }
+            catch (Exception) { };
+            try
+            {
+                timeOutSound = new SoundPlayer("Resources\\timer.wav");
+                timeOutSound.Load();
+            }
+            catch (Exception) { };
         }
-        public GameScreen()
+        internal GameScreen(GameColors gameColors)
         {
+            this.gameColors = gameColors;
             loadSounds();
             loadTeams();
             InitializeComponent();
@@ -132,7 +149,7 @@ namespace GameShow
         private void ReadyScreen_KeyPress(object sender, KeyPressEventArgs e)
         {
             String keyPressed = e.KeyChar.ToString().ToLower();
-            if (keyPressed.Equals("w"))
+            if (keyPressed.Equals("v"))
             {
                 if (screenShowing == screen.ready)
                 {
@@ -151,18 +168,14 @@ namespace GameShow
                 }
                 else if (screenShowing == screen.answer)
                 {
-                    drawScoresScreen();
-                }
-                else if (screenShowing == screen.scores)
-                {
-                    questionIndex += 1; //This can be removed if another team will be allowed to answer
+                    questionIndex++; //This can be removed if another team will be allowed to answer
                     if (questionIndex < questions.Length)
                         drawReadyScreen();
                     else
                         drawEndScreen();
                 }
-            }
-            else if (keyPressed.Equals("r"))
+            }//----------------------------------------------------------------------------------------------------------
+            else if (keyPressed.Equals("u"))
             {
                 if (screenShowing == screen.ready)
                 {
@@ -177,45 +190,31 @@ namespace GameShow
                     else
                     {
                         markRight();
-                        //add points to team
                     }
                 }
                 else if (screenShowing == screen.answer)
                 {
-                    drawScoresScreen();
-                }
-                else if (screenShowing == screen.scores)
-                {
-                    questionIndex += 1;
+                    questionIndex++;
                     if (questionIndex < questions.Length)
                         drawReadyScreen();
                     else
                         drawEndScreen();
                 }
-            }
+            }//----------------------------------------------------------------------------------------------------------
             else
             {
                 try
                 {
-                    switch (keyPressed)
+                    foreach (Team team in this.teams)
                     {
-                        case "1": if (!keyboardLocked && this.teams[0] != null) { highlightTeam(this.teams[0], true); lockKeyboard(); } break;
-                        case "2": if (!keyboardLocked && this.teams[1] != null) { highlightTeam(this.teams[1], true); lockKeyboard(); } break;
-                        case "3": if (!keyboardLocked && this.teams[2] != null) { highlightTeam(this.teams[2], true); lockKeyboard(); } break;
-                        case "4": if (!keyboardLocked && this.teams[3] != null) { highlightTeam(this.teams[3], true); lockKeyboard(); } break;
-                        case "5": if (!keyboardLocked && this.teams[4] != null) { highlightTeam(this.teams[4], true); lockKeyboard(); } break;
-                        case "6": if (!keyboardLocked && this.teams[5] != null) { highlightTeam(this.teams[5], true); lockKeyboard(); } break;
-                        case "7": if (!keyboardLocked && this.teams[6] != null) { highlightTeam(this.teams[6], true); lockKeyboard(); } break;
-                        case "8": if (!keyboardLocked && this.teams[7] != null) { highlightTeam(this.teams[7], true); lockKeyboard(); } break;
-                        case "9": if (!keyboardLocked && this.teams[8] != null) { highlightTeam(this.teams[8], true); lockKeyboard(); } break;
-                        case "0": if (!keyboardLocked && this.teams[9] != null) { highlightTeam(this.teams[9], true); lockKeyboard(); } break;
-                        default: break;
+                        if (!keyboardLocked && team != null && keyPressed == team.key)
+                        {
+                            highlightTeam(team, true);
+                            lockKeyboard();
+                        }
                     }
                 }
-                catch (Exception)
-                {
-                    //unlockKeyboard();
-                };
+                catch (Exception) { };
             }
         }        
         private void drawReadyScreen()
@@ -223,7 +222,7 @@ namespace GameShow
             scoresPanel.Hide();
             playSound(readySound);
             lblTitle.Text = "Question " + questions[questionIndex].questionNumber.ToString();
-            lblMainBoxLabel.Text = "Buuuzzers Readyyy!!!";
+            lblMainBoxLabel.Text = "Ready?";
             lblPoints.Text = questions[questionIndex].points.ToString();
             lblSeconds.Text = questions[questionIndex].time.ToString();
             hideMarks();
@@ -267,7 +266,7 @@ namespace GameShow
             }
             lblScores.Text = strScores;
             scoresPanel.Show();
-            screenShowing = screen.scores;
+            //screenShowing = screen.scores;
             lockKeyboard();
         }
         private void drawErrorScreen()
@@ -287,6 +286,7 @@ namespace GameShow
             lblSeconds.Text = "--";
             hideMarks();
             Team maxPoints = null;
+            var orderPoints = this.teams.OrderBy(x => x.points);
             foreach (Team team in this.teams)
             {
                 highlightTeam(team, false);
@@ -298,9 +298,8 @@ namespace GameShow
                 lblMainBoxLabel.Text = "Congratulations!!" + '\n' + maxPoints.teamName;
                 lblPoints.Text = maxPoints.points.ToString();
                 highlightTeam(maxPoints, true);
-                lockKeyboard();
             }
-            screenShowing = screen.scores;
+            screenShowing = screen.end;
             lockKeyboard();
         }
         private void playSound(SoundPlayer sound)
@@ -362,16 +361,16 @@ namespace GameShow
                 if (highlighted)
                 {
                     playSound(team.sound);
-                    team.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
-                    team.ForeColor = System.Drawing.Color.White;
+                    team.BackColor = gameColors.SelectedBoxFill;
+                    team.ForeColor = gameColors.SelectedBoxText;
                     team.selected = true;
                     timeRemaining = questions[questionIndex].time;
                     stopWatch.Enabled = true;
                 }
                 else
                 {
-                    team.BackColor = System.Drawing.Color.White;
-                    team.ForeColor = System.Drawing.Color.Black;
+                    team.BackColor = gameColors.NoSelectBoxFill;
+                    team.ForeColor = gameColors.NoSelectBoxText;
                     team.selected = false;
                 }
             }
@@ -388,9 +387,23 @@ namespace GameShow
             lblWrong.Parent = lblMainBoxLabel; //Need this to make the Wrong Label Background Transparent based on the object that is behind
             lblRight.Top -= 50; //For some reason the ✔ mark drops to the bottom so this is to realign
             lblWrong.Top -= 100; //For some reason the X mark drops to the bottom so this is to realign
-            scoresPanel.BringToFront();
+            lblTitle.ForeColor = gameColors.ScreenTitleText;
+            lblMainBoxLabel.ForeColor = gameColors.ScreenTitleText;
+            lblPoints.ForeColor = gameColors.ScreenTitleText;
+            lblSeconds.ForeColor = gameColors.ScreenTitleText;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            try
+            {
+                this.BackgroundImage = Image.FromFile("Resources\\Ready.png");
+            }
+            catch (Exception) { };
+            //scoresPanel.BringToFront();
         }
         private void GameScreen_SizeChanged(object sender, EventArgs e)
+        {
+            setLayout();
+        }
+        internal void setLayout()
         {
             //Dinamically change the Font Size of the Texts when resizing the screen
             lblMainBoxLabel.Font = new System.Drawing.Font("Arial", (this.Size.Width * 48 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -405,9 +418,8 @@ namespace GameShow
             foreach (Team team in teams)
                 if (team != null)
                 {
-                    team.Location = new System.Drawing.Point(team.Location.X, (12 + (i * this.Size.Height * 55 / 600)));
+                    team.Location = new System.Drawing.Point(team.Location.X, (12 + (i++ * this.Size.Height * 55 / 600)));
                     team.Size = new System.Drawing.Size(team.Size.Width, (this.Size.Height * 46 / 600));
-                    i++;
                 }
         }
         private void GameScreen_FormClosed(object sender, FormClosedEventArgs e)
@@ -419,13 +431,15 @@ namespace GameShow
         {
             if (screenShowing == screen.question)
             {
-                if (timeRemaining > 0)
+                if (timeRemaining > 1)
                 {
                     timeRemaining--;
                     lblSeconds.Text = timeRemaining.ToString();
                 }
                 else
                 {
+                    playSound(timeOutSound);
+                    lblSeconds.Text = "0";
                     stopWatch.Enabled = false;
                 }
             }

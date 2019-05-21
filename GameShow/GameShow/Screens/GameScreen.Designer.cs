@@ -53,6 +53,7 @@
             // 
             this.lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(195)))), ((int)(((byte)(106)))));
             this.lblTitle.Location = new System.Drawing.Point(101, 12);
@@ -145,6 +146,7 @@
             this.picLogo.Size = new System.Drawing.Size(85, 85);
             this.picLogo.TabIndex = 18;
             this.picLogo.TabStop = false;
+            this.picLogo.Visible = false;
             // 
             // lblSecondsLabel
             // 
@@ -232,6 +234,7 @@
             this.scoresPanel.Name = "scoresPanel";
             this.scoresPanel.Size = new System.Drawing.Size(784, 559);
             this.scoresPanel.TabIndex = 19;
+            this.scoresPanel.Visible = false;
             // 
             // GameScreen
             // 
@@ -239,7 +242,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.scoresPanel);
             this.Controls.Add(this.picLogo);
             this.Controls.Add(this.lblPointsLabel);
             this.Controls.Add(this.lblSecondsLabel);
@@ -249,6 +251,7 @@
             this.Controls.Add(this.lblWrong);
             this.Controls.Add(this.lblRight);
             this.Controls.Add(this.lblMainBoxLabel);
+            this.Controls.Add(this.scoresPanel);
             this.Name = "GameScreen";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

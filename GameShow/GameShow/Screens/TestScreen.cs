@@ -127,22 +127,22 @@ namespace GameShow
         private void ReadyScreen_KeyPress(object sender, KeyPressEventArgs e)
         {
             String keyPressed = e.KeyChar.ToString().ToLower();
-            if (keyPressed.Equals("u"))
+            if (keyPressed.Equals("v"))
             {
                 if (teamValidating > 0)
                 {
                     teamValidating--;
                     setTeam();
                 }
-            }
-            else if (keyPressed.Equals("v"))
+            }//-------------------------------------------------
+            else if (keyPressed.Equals("u"))
             {
                 if (teamValidating < cTeam - 1)
                 {
                     teamValidating++;
                     setTeam();
                 }
-            }
+            }//-------------------------------------------------
             else
             {
                 try
