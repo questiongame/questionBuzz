@@ -26,6 +26,7 @@ namespace GameShow
         private SoundPlayer gameOverSound = null;
         private SoundPlayer timeOutSound = null;
         private GameColors gameColors = new GameColors();
+        private bool teamAnswered = false;
         private int timeRemaining = 0;
         private enum screen {ready, question, answer, error, end};
         private void loadQuestions()
@@ -157,7 +158,7 @@ namespace GameShow
                 }
                 else if (screenShowing == screen.question)
                 {
-                    if (questionMarked)
+                    if (!this.teamAnswered || questionMarked)
                     {
                         drawAnswerScreen();
                     }
@@ -168,7 +169,7 @@ namespace GameShow
                 }
                 else if (screenShowing == screen.answer)
                 {
-                    questionIndex++; //This can be removed if another team will be allowed to answer
+                    questionIndex++;
                     if (questionIndex < questions.Length)
                         drawReadyScreen();
                     else
@@ -183,7 +184,7 @@ namespace GameShow
                 }
                 else if (screenShowing == screen.question)
                 {
-                    if (questionMarked)
+                    if (!this.teamAnswered || questionMarked)
                     {
                         drawAnswerScreen();
                     }
@@ -219,7 +220,6 @@ namespace GameShow
         }        
         private void drawReadyScreen()
         {
-            scoresPanel.Hide();
             playSound(readySound);
             lblTitle.Text = "Question " + questions[questionIndex].questionNumber.ToString();
             lblMainBoxLabel.Text = "Ready?";
@@ -232,7 +232,6 @@ namespace GameShow
         }
         private void drawQuestionScreen()
         {
-            scoresPanel.Hide();
             lblTitle.Text = "Question " + questions[questionIndex].questionNumber.ToString();
             lblMainBoxLabel.Text = questions[questionIndex].strQuestion;
             hideMarks();
@@ -243,7 +242,6 @@ namespace GameShow
         }
         private void drawAnswerScreen()
         {
-            scoresPanel.Hide();
             lblTitle.Text = "Answer " + questions[questionIndex].questionNumber.ToString();
             lblMainBoxLabel.Text = questions[questionIndex].strAnswer;
             hideMarks();
@@ -252,7 +250,6 @@ namespace GameShow
         }
         private void drawScoresScreen()
         {
-            lblScores.Text = "";
             string strScores = "";
             foreach (Team team in teams)
             {
@@ -264,14 +261,10 @@ namespace GameShow
                     strScores += team.teamName + spaces + team.points + " points" + '\n';
                 }
             }
-            lblScores.Text = strScores;
-            scoresPanel.Show();
-            //screenShowing = screen.scores;
             lockKeyboard();
         }
         private void drawErrorScreen()
         {
-            scoresPanel.Hide();
             lblTitle.Text = "Error";
             lblMainBoxLabel.Text = "Error Reading Questions File";
             lblPoints.Text = "---";
@@ -281,7 +274,6 @@ namespace GameShow
         }
         private void drawEndScreen()
         {
-            scoresPanel.Hide();
             lblTitle.Text = "The End";
             lblSeconds.Text = "--";
             hideMarks();
@@ -364,6 +356,7 @@ namespace GameShow
                     team.BackColor = gameColors.SelectedBoxFill;
                     team.ForeColor = gameColors.SelectedBoxText;
                     team.selected = true;
+                    this.teamAnswered = true;
                     timeRemaining = questions[questionIndex].time;
                     stopWatch.Enabled = true;
                 }
@@ -372,6 +365,7 @@ namespace GameShow
                     team.BackColor = gameColors.NoSelectBoxFill;
                     team.ForeColor = gameColors.NoSelectBoxText;
                     team.selected = false;
+                    this.teamAnswered = false;
                 }
             }
             catch (Exception)
@@ -397,7 +391,6 @@ namespace GameShow
                 this.BackgroundImage = Image.FromFile("Resources\\Ready.png");
             }
             catch (Exception) { };
-            //scoresPanel.BringToFront();
         }
         private void GameScreen_SizeChanged(object sender, EventArgs e)
         {
@@ -405,15 +398,12 @@ namespace GameShow
         }
         internal void setLayout()
         {
-            //Dinamically change the Font Size of the Texts when resizing the screen
             lblMainBoxLabel.Font = new System.Drawing.Font("Arial", (this.Size.Width * 48 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblTitle.Font = new System.Drawing.Font("Arial", (this.Size.Width * 28 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblRight.Font = new System.Drawing.Font("Arial", (this.Size.Width * 200 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblWrong.Font = new System.Drawing.Font("Arial", (this.Size.Width * 200 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             //lblPoints.Font = new System.Drawing.Font("Arial", (this.Size.Width * 27 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             //lblSecondsLabel.Font = new System.Drawing.Font("Arial", (this.Size.Width * 27 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblScoresScreen.Font = new System.Drawing.Font("Arial", (this.Size.Width * 28 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            lblScores.Font = new System.Drawing.Font("Lucida Console", (this.Size.Width * 25 / 800), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             int i = 0;
             foreach (Team team in teams)
                 if (team != null)
