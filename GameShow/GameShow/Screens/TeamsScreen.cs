@@ -136,8 +136,8 @@ namespace GameShow
                 {
                     team.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 20), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                     team.Size = new System.Drawing.Size((this.Size.Width * 145 / 800), (this.Size.Height * 40 / 600));
-                    team.Location = new System.Drawing.Point(50 + (x * this.Size.Width * 175 / 800), (140 + (y++ * this.Size.Height * 55 / 600)));
-                    if (y >= 6) { x++; y = 0; }
+                    team.Location = new System.Drawing.Point(150 + (x * this.Size.Width * 175 / 800), (160 + (y++ * this.Size.Height * 55 / 600)));
+                    if (y >= 5) { x++; y = 0; }
                 }
         }
     }

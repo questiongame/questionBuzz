@@ -152,13 +152,13 @@ namespace GameShow
             String keyPressed = e.KeyChar.ToString().ToLower();
             if (keyPressed.Equals("v"))
             {
-                if (screenShowing == screen.ready)
+                if (this.screenShowing == screen.ready)
                 {
                     drawQuestionScreen();
                 }
-                else if (screenShowing == screen.question)
+                else if (this.screenShowing == screen.question)
                 {
-                    if (!this.teamAnswered || questionMarked)
+                    if (!this.teamAnswered || this.questionMarked)
                     {
                         drawAnswerScreen();
                     }
@@ -167,10 +167,10 @@ namespace GameShow
                         markWrong();
                     }
                 }
-                else if (screenShowing == screen.answer)
+                else if (this.screenShowing == screen.answer)
                 {
-                    questionIndex++;
-                    if (questionIndex < questions.Length)
+                    this.questionIndex++;
+                    if (this.questionIndex < this.questions.Length)
                         drawReadyScreen();
                     else
                         drawEndScreen();
@@ -178,13 +178,13 @@ namespace GameShow
             }//----------------------------------------------------------------------------------------------------------
             else if (keyPressed.Equals("u"))
             {
-                if (screenShowing == screen.ready)
+                if (this.screenShowing == screen.ready)
                 {
                     drawQuestionScreen();
                 }
-                else if (screenShowing == screen.question)
+                else if (this.screenShowing == screen.question)
                 {
-                    if (!this.teamAnswered || questionMarked)
+                    if (!this.teamAnswered || this.questionMarked)
                     {
                         drawAnswerScreen();
                     }
@@ -193,10 +193,10 @@ namespace GameShow
                         markRight();
                     }
                 }
-                else if (screenShowing == screen.answer)
+                else if (this.screenShowing == screen.answer)
                 {
-                    questionIndex++;
-                    if (questionIndex < questions.Length)
+                    this.questionIndex++;
+                    if (this.questionIndex < this.questions.Length)
                         drawReadyScreen();
                     else
                         drawEndScreen();
@@ -208,7 +208,7 @@ namespace GameShow
                 {
                     foreach (Team team in this.teams)
                     {
-                        if (!keyboardLocked && team != null && keyPressed == team.key)
+                        if (!this.keyboardLocked && team != null && keyPressed == team.key)
                         {
                             highlightTeam(team, true);
                             lockKeyboard();
@@ -228,6 +228,11 @@ namespace GameShow
             hideMarks();
             lockKeyboard();
             foreach (Team team in this.teams) highlightTeam(team, false);
+            try
+            {
+                this.BackgroundImage = Image.FromFile("Resources\\Ready.png");
+            }
+            catch (Exception) { };
             screenShowing = screen.ready;
         }
         private void drawQuestionScreen()
@@ -237,6 +242,11 @@ namespace GameShow
             hideMarks();
             foreach (Team team in this.teams) highlightTeam(team, false);
             timeRemaining = 0;
+            try
+            {
+                this.BackgroundImage = Image.FromFile("Resources\\QuestionAnswer.png");
+            }
+            catch (Exception) { };
             screenShowing = screen.question;
             unlockKeyboard();
         }
@@ -380,17 +390,12 @@ namespace GameShow
             lblRight.Parent = lblMainBoxLabel; //Need this to make the Right Label Background Transparent based on the object that is behind
             lblWrong.Parent = lblMainBoxLabel; //Need this to make the Wrong Label Background Transparent based on the object that is behind
             lblRight.Top -= 50; //For some reason the ✔ mark drops to the bottom so this is to realign
-            lblWrong.Top -= 100; //For some reason the X mark drops to the bottom so this is to realign
+            lblWrong.Top -= 50; //For some reason the X mark drops to the bottom so this is to realign
             lblTitle.ForeColor = gameColors.ScreenTitleText;
             lblMainBoxLabel.ForeColor = gameColors.ScreenTitleText;
             lblPoints.ForeColor = gameColors.ScreenTitleText;
             lblSeconds.ForeColor = gameColors.ScreenTitleText;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            try
-            {
-                this.BackgroundImage = Image.FromFile("Resources\\Ready.png");
-            }
-            catch (Exception) { };
         }
         private void GameScreen_SizeChanged(object sender, EventArgs e)
         {
