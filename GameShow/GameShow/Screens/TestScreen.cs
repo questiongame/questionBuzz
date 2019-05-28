@@ -65,7 +65,6 @@ namespace GameShow
         private void GameScreen_SizeChanged(object sender, EventArgs e)
         {
             setLayout();
-            setTeam();
         }
         private void setLayout()
         {
@@ -94,7 +93,7 @@ namespace GameShow
                 string characteristics = this.teams[this.teamValidating].characteristics;
                 string[] characteristicsColumns = characteristics.Contains("\r") ? characteristics.Replace("\r", "").Split('|') : characteristics.Split('|');
                 characteristics = "";
-                for (int i = 0; i < characteristicsColumns.Length; i++)
+                for (int i = 0; i < characteristicsColumns.Length && i <= 20; i++)
                 {
                     if (characteristicsColumns[i] != null && characteristicsColumns[i] != "")
                     {
