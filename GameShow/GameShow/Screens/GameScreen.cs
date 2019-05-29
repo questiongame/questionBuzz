@@ -231,6 +231,11 @@ namespace GameShow
             }
             catch (Exception) { };
             screenShowing = screen.ready;
+            lblTitle.Hide();
+            lblPoints.Hide();
+            lblPointsLabel.Hide();
+            lblSeconds.Hide();
+            lblSecondsLabel.Hide();
         }
         private void drawQuestionScreen()
         {
@@ -246,6 +251,11 @@ namespace GameShow
             catch (Exception) { };
             screenShowing = screen.question;
             unlockKeyboard();
+            lblTitle.Show();
+            lblPoints.Show();
+            lblPointsLabel.Show();
+            lblSeconds.Show();
+            lblSecondsLabel.Show();
         }
         private void drawAnswerScreen()
         {
@@ -254,6 +264,11 @@ namespace GameShow
             hideMarks();
             screenShowing = screen.answer;
             lockKeyboard();
+            lblTitle.Show();
+            lblPoints.Show();
+            lblPointsLabel.Show();
+            lblSeconds.Show();
+            lblSecondsLabel.Show();
         }
         private void drawScoresScreen()
         {
@@ -269,6 +284,11 @@ namespace GameShow
                 }
             }
             lockKeyboard();
+            lblTitle.Show();
+            lblPoints.Show();
+            lblPointsLabel.Show();
+            lblSeconds.Show();
+            lblSecondsLabel.Show();
         }
         private void drawErrorScreen()
         {
@@ -278,28 +298,48 @@ namespace GameShow
             lblSeconds.Text = "--";
             screenShowing = screen.error;
             lockKeyboard();
+            lblTitle.Show();
+            lblPoints.Show();
+            lblPointsLabel.Show();
+            lblSeconds.Show();
+            lblSecondsLabel.Show();
         }
         private void drawEndScreen()
         {
-            lblTitle.Text = "The End";
-            lblSeconds.Text = "--";
-            hideMarks();
-            Team maxPoints = null;
-            var orderPoints = this.teams.OrderBy(x => x.points);
-            foreach (Team team in this.teams)
-            {
-                highlightTeam(team, false);
-                if (team != null && (maxPoints == null || maxPoints.points < team.points))
-                    maxPoints = team;
-            }
-            if (maxPoints != null)
-            {
-                lblMainBoxLabel.Text = "Congratulations!" + '\n' + maxPoints.teamName;
-                lblPoints.Text = maxPoints.points.ToString();
-                highlightTeam(maxPoints, true);
-            }
+            playSound(gameOverSound);
             screenShowing = screen.end;
+            lblMainBoxLabel.Text = "Game Over";
+            hideMarks();
+            foreach (Team team in this.teams) highlightTeam(team, false);
+            var noNulls = this.teams.Where(x => x != null).Select(x => x);
+            var maxPoints = noNulls.Max(x => x.points);
+            var winners = noNulls.Where(x => x.points == maxPoints).Select(x => x);
+            if (maxPoints <= 0)
+            {
+                lblMainBoxLabel.Text += "\n\nNo Winners";
+            }
+            else
+            {
+                string winnersString = "";
+                int i = 0;
+                foreach (var team in winners)
+                {
+                    highlightTeam(team, true);
+                    winnersString += (i++==0?"":", ") + team.teamName;
+                }
+                lblMainBoxLabel.Text += "\n\nCongratulations!\n" + winnersString;
+            }
+            try
+            {
+                this.BackgroundImage = Image.FromFile("Resources\\GameOver.png");
+            }
+            catch (Exception) { };
             lockKeyboard();
+            lblTitle.Hide();
+            lblPoints.Hide();
+            lblPointsLabel.Hide();
+            lblSeconds.Hide();
+            lblSecondsLabel.Hide();
         }
         private void playSound(SoundPlayer sound)
         {
@@ -366,20 +406,26 @@ namespace GameShow
             {
                 if (highlighted)
                 {
-                    playSound(team.sound);
                     team.BackColor = gameColors.SelectedBoxFill;
                     team.ForeColor = gameColors.SelectedBoxText;
-                    team.selected = true;
-                    this.teamAnswered = true;
-                    this.timeRemaining = questions[questionIndex].time;
-                    this.stopWatch.Enabled = true;
+                    if (screenShowing != screen.end)
+                    {
+                        playSound(team.sound);
+                        team.selected = true;
+                        this.teamAnswered = true;
+                        this.timeRemaining = questions[questionIndex].time;
+                        this.stopWatch.Enabled = true;
+                    }
                 }
                 else
                 {
                     team.BackColor = gameColors.NoSelectBoxFill;
                     team.ForeColor = gameColors.NoSelectBoxText;
-                    team.selected = false;
-                    this.teamAnswered = false;
+                    if (screenShowing != screen.end)
+                    {
+                        team.selected = false;
+                        this.teamAnswered = false;
+                    }
                 }
             }
             catch (Exception)
@@ -393,8 +439,6 @@ namespace GameShow
             hideMarks();
             lblRight.Parent = lblMainBoxLabel; //Need this to make the Right Label Background Transparent based on the object that is behind
             lblWrong.Parent = lblMainBoxLabel; //Need this to make the Wrong Label Background Transparent based on the object that is behind
-            lblRight.Top -= 50; //For some reason the ✔ mark drops to the bottom so this is to realign
-            lblWrong.Top -= 50; //For some reason the X mark drops to the bottom so this is to realign
             lblTitle.ForeColor = gameColors.ScreenTitleText;
             lblTeams.ForeColor = gameColors.ScreenTitleText;
             lblMainBoxLabel.ForeColor = gameColors.ScreenTitleText;
@@ -417,27 +461,27 @@ namespace GameShow
             lblTeams.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 28), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblTeams.Location = new System.Drawing.Point(lblTitle.Location.X + lblTitle.Width, 9);
             lblTeams.Size = new System.Drawing.Size((this.Size.Width * 260 / 800), (this.Size.Height * 57 / 600));
-            lblMainBoxLabel.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 40), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            lblMainBoxLabel.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 38), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblMainBoxLabel.Location = new System.Drawing.Point(12, lblTitle.Location.Y + lblTitle.Height);
-            lblMainBoxLabel.Size = new System.Drawing.Size((this.Size.Width * 484 / 800), (this.Size.Height * 382 / 600));
+            lblMainBoxLabel.Size = new System.Drawing.Size((this.Size.Width * 484 / 800), (this.Size.Height * 420 / 600));
             lblRight.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 200), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblRight.Location = new System.Drawing.Point(12, lblTitle.Location.Y + lblTitle.Height);
-            lblRight.Size = new System.Drawing.Size((this.Size.Width * 484 / 800), (this.Size.Height * 382 / 600));
+            lblRight.Size = new System.Drawing.Size((this.Size.Width * 484 / 800), (this.Size.Height * 380 / 600));
             lblWrong.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 200), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblWrong.Location = new System.Drawing.Point(12, lblTitle.Location.Y + lblTitle.Height);
-            lblWrong.Size = new System.Drawing.Size((this.Size.Width * 484 / 800), (this.Size.Height * 382 / 600));
+            lblWrong.Size = new System.Drawing.Size((this.Size.Width * 484 / 800), (this.Size.Height * 380 / 600));
             lblPointsLabel.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 16), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblPointsLabel.Size = new System.Drawing.Size((this.Size.Width * 146 / 800), (this.Size.Height * 61 / 600));
-            lblPointsLabel.Location = new System.Drawing.Point(12, 10 + lblMainBoxLabel.Location.Y + lblMainBoxLabel.Height);
+            lblPointsLabel.Location = new System.Drawing.Point(12, 5 + lblMainBoxLabel.Location.Y + lblMainBoxLabel.Height);
             lblPoints.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 27), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblPoints.Size = new System.Drawing.Size((this.Size.Width * 92 / 800), (this.Size.Height * 61 / 600));
-            lblPoints.Location = new System.Drawing.Point(lblPointsLabel.Location.X + lblPointsLabel.Width, 10 + lblMainBoxLabel.Location.Y + lblMainBoxLabel.Height);
+            lblPoints.Location = new System.Drawing.Point(lblPointsLabel.Location.X + lblPointsLabel.Width, 5 + lblMainBoxLabel.Location.Y + lblMainBoxLabel.Height);
             lblSecondsLabel.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 16), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblSecondsLabel.Size = new System.Drawing.Size((this.Size.Width * 105 / 800), (this.Size.Height * 61 / 600));
             lblSeconds.Font = new System.Drawing.Font("Arial", ((float)fontConstant * 27), System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lblSeconds.Size = new System.Drawing.Size((this.Size.Width * 92 / 800), (this.Size.Height * 61 / 600));
-            lblSeconds.Location = new System.Drawing.Point(lblMainBoxLabel.Location.X + lblMainBoxLabel.Width - lblSeconds.Width, 10 + lblMainBoxLabel.Location.Y + lblMainBoxLabel.Height);
-            lblSecondsLabel.Location = new System.Drawing.Point(lblMainBoxLabel.Location.X + lblMainBoxLabel.Width - lblSeconds.Width - lblSecondsLabel.Width, 10 + lblMainBoxLabel.Location.Y + lblMainBoxLabel.Height);
+            lblSeconds.Location = new System.Drawing.Point(lblMainBoxLabel.Location.X + lblMainBoxLabel.Width - lblSeconds.Width, 5 + lblMainBoxLabel.Location.Y + lblMainBoxLabel.Height);
+            lblSecondsLabel.Location = new System.Drawing.Point(lblMainBoxLabel.Location.X + lblMainBoxLabel.Width - lblSeconds.Width - lblSecondsLabel.Width, 5 + lblMainBoxLabel.Location.Y + lblMainBoxLabel.Height);
             double maxY = (double)Math.Ceiling((double)this.teams.Count(p => p != null) / 2);
             int x = 0, y = 0;
             foreach (Team team in this.teams)

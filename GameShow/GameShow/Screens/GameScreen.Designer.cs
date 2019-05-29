@@ -172,7 +172,7 @@
             this.lblTeams.Name = "lblTeams";
             this.lblTeams.Size = new System.Drawing.Size(260, 57);
             this.lblTeams.TabIndex = 18;
-            this.lblTeams.Text = "Teams";
+            this.lblTeams.Text = "Team Scores";
             this.lblTeams.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // GameScreen
